@@ -11,7 +11,8 @@ set foldmethod=marker
 set noshelltemp
 
 call plug#begin()
-Plug 'pprovost/vim-ps1'
-Plug 'tommcdo/vim-lion'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tommcdo/vim-lion'
+Plug 'pprovost/vim-ps1'
 call plug#end()
