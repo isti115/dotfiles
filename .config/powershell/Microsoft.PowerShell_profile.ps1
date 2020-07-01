@@ -21,6 +21,8 @@ Import-Module oh-my-posh
 Set-Theme AgnosterPlus
 
 $ENV:TERM = "xterm"
+$ENV:EDITOR = "nvim"
+$ENV:VISUAL = "nvim"
 # $SHELL = $ENV:SHELL
 
 Set-Alias tp trash-put
@@ -30,7 +32,7 @@ function yw {
 }
 
 function ec {
-  emacsclient -create-frame --alternate-editor="" $args
+  emacsclient --alternate-editor="" -t --create-frame $args
 }
 
 function aurclone($name) {
@@ -47,3 +49,11 @@ function aurinstall($name) {
 function dotfiles {
   git --git-dir=$home/.dotfiles/ --work-tree=$home $args
 }
+
+function sw {
+  sway --my-next-gpu-wont-be-nvidia
+}
+
+# function em {
+#   emacsclient -a="" -nw $args
+# }

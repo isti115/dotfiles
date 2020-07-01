@@ -10,6 +10,8 @@ set foldmethod=marker
 
 set noshelltemp
 
+command MakeDir !mkdir -p %:h
+
 call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'

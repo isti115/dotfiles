@@ -297,7 +297,8 @@ bar {
   i3bar_command i3bar -t
 }
 
-for_window [class=".*"] border pixel 5
+# for_window [class=".*"] border pixel 5
+default_border pixel 5
 gaps inner 10
 
 #############

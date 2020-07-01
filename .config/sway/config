@@ -7,18 +7,25 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $win Mod4
+set $alt Mod1
+set $ctrl Ctrl
+set $shift Shift
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
-set $term alacritty
+# set $term termite
+# set $term alacritty
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu wofi --show drun --allow-images # | wofi --show run # | dmenu_path | dmenu | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -30,6 +37,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+output eDP-1 position 0 600
+output HDMI-A-1 position 1920 0
+# output HEADLESS-1 position 325 1080
 
 ### Idle configuration
 #
@@ -59,110 +70,222 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input 1133:16489:Logitech_MX_Master_2S {
+  pointer_accel 0
+}
+
+input 2:14:ETPS/2_Elantech_Touchpad tap enabled
+
+seat * hide_cursor 3000
+
+input type:keyboard {
+# input * {
+  # xkb_layout us
+  # xkb_layout us-f-hu
+  # xkb_file ~/.config/xkb/test/custom.xkb
+  xkb_file ~/.config/xkb/us-f-hu.xkb
+}
+
+# input "1241:659:USB-HID_Keyboard" {
+#   # xkb_layout us
+#   xkb_file ~/.config/xkb/us-f-hu.xkb
+# }
+
+# input "1241:659:USB-HID_Keyboard_Consumer_Control" {
+#   xkb_file ~/.config/xkb/us-f-hu.xkb
+# }
+
+# input "1241:659:USB-HID_Keyboard_System_Control" {
+#   xkb_file ~/.config/xkb/us-f-hu.xkb
+# }
+
+# input "1241:659:USB-HID_Keyboard" {
+#   xkb_file ~/.config/xkb/us-f-hu.xkb
+# }
+
+
 ### Key bindings
 #
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $win+Return exec termite # $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $win+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    # bindsym $win+d exec $menu
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
+    bindsym $win+d exec wofi --show drun --allow-images
+    bindsym $win+Shift+d exec wofi --show run
+
+    # Drag floating windows by holding down $win and left mouse button.
+    # Resize them with right mouse button + $win.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    floating_modifier $win normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $win+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $win+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    bindsym $win+$left focus left
+    bindsym $win+$down focus down
+    bindsym $win+$up focus up
+    bindsym $win+$right focus right
+    # Or use $win+[up|down|left|right]
+    bindsym $win+Left focus left
+    bindsym $win+Down focus down
+    bindsym $win+Up focus up
+    bindsym $win+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    bindsym $win+Shift+$left move left
+    bindsym $win+Shift+$down move down
+    bindsym $win+Shift+$up move up
+    bindsym $win+Shift+$right move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    bindsym $win+Shift+Left move left
+    bindsym $win+Shift+Down move down
+    bindsym $win+Shift+Up move up
+    bindsym $win+Shift+Right move right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $win+$alt+$left focus output left
+    bindsym $win+$alt+$down focus output down
+    bindsym $win+$alt+$up focus output up
+    bindsym $win+$alt+$right focus output right
+    # Ditto, with arrow keys
+    bindsym $win+$alt+Left focus output left
+    bindsym $win+$alt+Down focus output down
+    bindsym $win+$alt+Up focus output up
+    bindsym $win+$alt+Right focus output right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $win+Ctrl+$left move workspace to output left
+    bindsym $win+Ctrl+$down move workspace to output down
+    bindsym $win+Ctrl+$up move workspace to output up
+    bindsym $win+Ctrl+$right move workspace to output right
+    # Ditto, with arrow keys
+    bindsym $win+Ctrl+Left move workspace to output left
+    bindsym $win+Ctrl+Down move workspace to output down
+    bindsym $win+Ctrl+Up move workspace to output up
+    bindsym $win+Ctrl+Right move workspace to output right
 #
 # Workspaces:
 #
-    # Switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
-    bindsym $mod+Shift+5 move container to workspace 5
-    bindsym $mod+Shift+6 move container to workspace 6
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
-    bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-    
-    bindsym XF86Tools workspace back_and_forth
-    # bindsym $mod+Tab workspace back_and_forth
+
+  set $ws1  1
+  set $ws2  2
+  set $ws3  3
+  set $ws4  4
+  set $ws5  5
+  set $ws6  6
+  set $ws7  7
+  set $ws8  8
+  set $ws9  9
+  set $ws10 10
+
+  set $key1  XF86Explorer
+  set $key2  XF86Calculator
+  set $key3  XF86Search
+  set $key4  XF86Mail
+  set $key5  Cancel
+  set $key6  XF86Reload
+  set $key7  XF86Favorites
+  set $key8  XF86HomePage
+  set $key9  Hangul_Hanja
+  set $key10 Hangul
+
+  # Switch to workspace
+  bindsym $win+1 workspace 1
+  bindsym $win+2 workspace 2
+  bindsym $win+3 workspace 3
+  bindsym $win+4 workspace 4
+  bindsym $win+5 workspace 5
+  bindsym $win+6 workspace 6
+  bindsym $win+7 workspace 7
+  bindsym $win+8 workspace 8
+  bindsym $win+9 workspace 9
+  bindsym $win+0 workspace 10
+
+  bindsym $key1  workspace $ws1
+  bindsym $key2  workspace $ws2
+  bindsym $key3  workspace $ws3
+  bindsym $key4  workspace $ws4
+  bindsym $key5  workspace $ws5
+  bindsym $key6  workspace $ws6
+  bindsym $key7  workspace $ws7
+  bindsym $key8  workspace $ws8
+  bindsym $key9  workspace $ws9
+  bindsym $key10 workspace $ws10
+
+  # Move focused container to workspace
+  bindsym $win+Shift+1 move container to workspace 1
+  bindsym $win+Shift+2 move container to workspace 2
+  bindsym $win+Shift+3 move container to workspace 3
+  bindsym $win+Shift+4 move container to workspace 4
+  bindsym $win+Shift+5 move container to workspace 5
+  bindsym $win+Shift+6 move container to workspace 6
+  bindsym $win+Shift+7 move container to workspace 7
+  bindsym $win+Shift+8 move container to workspace 8
+  bindsym $win+Shift+9 move container to workspace 9
+  bindsym $win+Shift+0 move container to workspace 10
+
+  bindsym Shift+$key1  move container to workspace $ws1
+  bindsym Shift+$key2  move container to workspace $ws2
+  bindsym Shift+$key3  move container to workspace $ws3
+  bindsym Shift+$key4  move container to workspace $ws4
+  bindsym Shift+$key5  move container to workspace $ws5
+  bindsym Shift+$key6  move container to workspace $ws6
+  bindsym Shift+$key7  move container to workspace $ws7
+  bindsym Shift+$key8  move container to workspace $ws8
+  bindsym Shift+$key9  move container to workspace $ws9
+  bindsym Shift+$key10 move container to workspace $ws10
+  # Note: workspaces can have any name you want, not just numbers.
+  # We just use 1-10 as the default.
+
+  bindsym XF86Tools workspace back_and_forth
+  # bindsym $win+Tab workspace back_and_forth
 #
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
+    # $win+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $win+b splith
+    bindsym $win+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $win+s layout stacking
+    bindsym $win+w layout tabbed
+    bindsym $win+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $win+f fullscreen
+    bindsym --whole-window button9 fullscreen toggle
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $win+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $win+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    # bindsym $win+a focus parent
+    bindsym $win+Escape focus parent
+    bindsym $win+Shift+Escape focus child
+
+    gaps inner 5
+    default_border pixel 5
+
 #
 # Scratchpad:
 #
@@ -170,11 +293,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym $win+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym $win+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -198,7 +321,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $win+r mode "resize"
 
 #
 # Status Bar:
@@ -221,19 +344,32 @@ bar {
     # }
 }
 
-# Own stuff 
-
-input 1133:16489:Logitech_MX_Master_2S {
-  pointer_accel 0
-}
+# Own stuff
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5dB
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5dB
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume-xob
 
 bindsym XF86Back exec --no-startup-id light -U 10
 bindsym XF86Forward exec --no-startup-id light -A 10
 
-bindsym --whole-window button9+button1 exec termite
+# bindsym --whole-window button9+button1 exec termite
+
+bindsym Print exec grimshot save screen
+bindsym Ctrl+Print exec grimshot copy screen
+bindsym Shift+Print exec grimshot save area
+bindsym Ctrl+Shift+Print exec grimshot copy area
+bindsym $alt+Print exec grimshot save win
+bindsym Ctrl+$alt+Print exec grimshot copy win
+
+# Task Managers
+
+bindsym Ctrl+Shift+Escape exec termite -e htop
+
+# File Managers
+
+bindsym $win+a exec termite -e ranger
+bindsym $win+Shift+a exec thunar
 
 # End
 
