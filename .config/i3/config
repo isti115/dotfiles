@@ -49,7 +49,8 @@
 
   # start a terminal
   # bindsym $win+Return exec i3-sensible-terminal
-  bindsym $win+Return exec termite
+  # bindsym $win+Return exec termite
+  bindsym $win+Return exec urxvt
 
   # kill focused window
   bindsym $win+Shift+q kill
@@ -65,10 +66,10 @@
   # bindsym $win+d exec --no-startup-id i3-dmenu-desktop
 
   # change focus
-  # bindsym $win+j focus left
-  # bindsym $win+k focus down
-  # bindsym $win+l focus up
-  # bindsym $win+semicolon focus right
+  bindsym $win+h focus left
+  bindsym $win+j focus down
+  bindsym $win+k focus up
+  bindsym $win+l focus right
 
   # alternatively, you can use the cursor keys:
   bindsym $win+Left focus left
@@ -77,10 +78,10 @@
   bindsym $win+Right focus right
 
   # move focused window
-  # bindsym $win+Shift+j move left
-  # bindsym $win+Shift+k move down
-  # bindsym $win+Shift+l move up
-  # bindsym $win+Shift+semicolon move right
+  bindsym $win+Shift+h move left
+  bindsym $win+Shift+j move down
+  bindsym $win+Shift+k move up
+  bindsym $win+Shift+l move right
 
   # alternatively, you can use the cursor keys:
   bindsym $win+Shift+Left move left
@@ -242,7 +243,8 @@
   bindsym $win+Shift+r restart
   # exit i3 (logs you out of your X session)
   # bindsym $win+Shift+l exec "i3lock -i Pictures/Backgrounds/2017Backgrounds_Green_background_with_squares_114551_.png"
-  bindsym $win+Shift+l exec "~/programming/shell/lock.sh"
+  # bindsym $win+Shift+l exec "~/programming/shell/lock.sh"
+  bindsym $win+$alt+l exec "~/programming/shell/i3-lock.sh"
   bindsym $win+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # }}}
@@ -591,8 +593,8 @@ bindsym $alt+XF86AudioPrev exec --no-startup-id picom-trans -c +5
 
 # scratchpad
 
-bindsym $win+j move scratchpad
-bindsym $win+l scratchpad show
+bindsym $win+$alt+j move scratchpad
+bindsym $win+$alt+l scratchpad show
 
 # emoji
 
@@ -662,4 +664,4 @@ for_window [title="calendar.google.com"] floating enable resize set 800 600, mov
 # bindsym --release button2 kill
 
 # autostart
-exec discord
+# exec discord

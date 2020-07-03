@@ -62,6 +62,10 @@
 
 ;; Own stuff
 
+(with-eval-after-load 'flycheck
+  (require 'flycheck-xo)
+  (flycheck-xo-setup))
+
 (add-hook 'agda2-mode-hook
           (lambda ()
             (setq company-backends '(company-dabbrev-code))

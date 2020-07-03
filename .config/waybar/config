@@ -138,7 +138,8 @@
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
-        "max-length": 40,
+        "max-length": 100,
+        "on-click": "playerctl play-pause",
         "format-icons": {
             "spotify": "",
             "default": "🎜"
