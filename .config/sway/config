@@ -4,18 +4,21 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+# font pango:DejaVu Sans Mono, FontAwesome 5 Free 10
+font pango:FontAwesome 5 Free 10
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $win Mod4
 set $alt Mod1
-set $ctrl Ctrl
-set $shift Shift
+set $ctl Ctrl
+set $sft Shift
 
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
+set $left  h
+set $down  j
+set $up    k
 set $right l
 
 # Your preferred terminal emulator
@@ -38,7 +41,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output eDP-1 position 0 600
+output eDP-1    position 0    600
 output HDMI-A-1 position 1920 0
 # output HEADLESS-1 position 325 1080
 
@@ -76,7 +79,7 @@ input 1133:16489:Logitech_MX_Master_2S {
 
 input 2:14:ETPS/2_Elantech_Touchpad tap enabled
 
-seat * hide_cursor 3000
+seat * hide_cursor 1500
 
 input type:keyboard {
 # input * {
@@ -136,48 +139,48 @@ input type:keyboard {
 # Moving around:
 #
     # Move your focus around
-    bindsym $win+$left focus left
-    bindsym $win+$down focus down
-    bindsym $win+$up focus up
+    bindsym $win+$left  focus left
+    bindsym $win+$down  focus down
+    bindsym $win+$up    focus up
     bindsym $win+$right focus right
     # Or use $win+[up|down|left|right]
-    bindsym $win+Left focus left
-    bindsym $win+Down focus down
-    bindsym $win+Up focus up
-    bindsym $win+Right focus right
+    # bindsym $win+Left  focus left
+    # bindsym $win+Down  focus down
+    # bindsym $win+Up    focus up
+    # bindsym $win+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $win+Shift+$left move left
-    bindsym $win+Shift+$down move down
-    bindsym $win+Shift+$up move up
+    bindsym $win+Shift+$left  move left
+    bindsym $win+Shift+$down  move down
+    bindsym $win+Shift+$up    move up
     bindsym $win+Shift+$right move right
     # Ditto, with arrow keys
-    bindsym $win+Shift+Left move left
-    bindsym $win+Shift+Down move down
-    bindsym $win+Shift+Up move up
-    bindsym $win+Shift+Right move right
+    # bindsym $win+Shift+Left  move left
+    # bindsym $win+Shift+Down  move down
+    # bindsym $win+Shift+Up    move up
+    # bindsym $win+Shift+Right move right
 
     # Move the focused window with the same, but add Shift
-    bindsym $win+$alt+$left focus output left
-    bindsym $win+$alt+$down focus output down
-    bindsym $win+$alt+$up focus output up
+    bindsym $win+$alt+$left  focus output left
+    bindsym $win+$alt+$down  focus output down
+    bindsym $win+$alt+$up    focus output up
     bindsym $win+$alt+$right focus output right
     # Ditto, with arrow keys
-    bindsym $win+$alt+Left focus output left
-    bindsym $win+$alt+Down focus output down
-    bindsym $win+$alt+Up focus output up
-    bindsym $win+$alt+Right focus output right
+    # bindsym $win+$alt+Left  focus output left
+    # bindsym $win+$alt+Down  focus output down
+    # bindsym $win+$alt+Up    focus output up
+    # bindsym $win+$alt+Right focus output right
 
     # Move the focused window with the same, but add Shift
-    bindsym $win+Ctrl+$left move workspace to output left
-    bindsym $win+Ctrl+$down move workspace to output down
-    bindsym $win+Ctrl+$up move workspace to output up
+    bindsym $win+Ctrl+$left  move workspace to output left
+    bindsym $win+Ctrl+$down  move workspace to output down
+    bindsym $win+Ctrl+$up    move workspace to output up
     bindsym $win+Ctrl+$right move workspace to output right
     # Ditto, with arrow keys
-    bindsym $win+Ctrl+Left move workspace to output left
-    bindsym $win+Ctrl+Down move workspace to output down
-    bindsym $win+Ctrl+Up move workspace to output up
-    bindsym $win+Ctrl+Right move workspace to output right
+    # bindsym $win+Ctrl+Left  move workspace to output left
+    # bindsym $win+Ctrl+Down  move workspace to output down
+    # bindsym $win+Ctrl+Up    move workspace to output up
+    # bindsym $win+Ctrl+Right move workspace to output right
 #
 # Workspaces:
 #
@@ -306,16 +309,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left  resize shrink width  10px
+    bindsym $down  resize grow   height 10px
+    bindsym $up    resize shrink height 10px
+    bindsym $right resize grow   width  10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    # bindsym Left  resize shrink width  10px
+    # bindsym Down  resize grow   height 10px
+    # bindsym Up    resize shrink height 10px
+    # bindsym Right resize grow   width  10px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -329,6 +332,8 @@ bindsym $win+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     # position top
+
+    # font pango:DejaVu Sans Mono, FontAwesome 5 Free 10
 
     swaybar_command waybar
 
@@ -346,39 +351,87 @@ bar {
 
 # Own stuff
 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume-xob
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5dB
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5dB
+# Audio / Sound / Volume {{{
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume-xob
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5dB
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5dB
 
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+    bindsym XF86AudioPlay exec playerctl play-pause
 
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pacmd set-default-sink 1
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pacmd set-default-sink 5
+    # bindsym $sft+XF86AudioLowerVolume exec ~/programming/utility-scripts/set-default-sink.pl "HDA Intel PCH"
+    # bindsym $sft+XF86AudioRaiseVolume exec ~/programming/utility-scripts/set-default-sink.pl "HDA Intel HDMI"
 
-bindsym Ctrl+XF86AudioLowerVolume exec --no-startup-id ~/programming/perl/move-sink-inputs.pl 1
-bindsym Ctrl+XF86AudioRaiseVolume exec --no-startup-id ~/programming/perl/move-sink-inputs.pl 5
+    # bindsym $ctl+XF86AudioLowerVolume exec ~/programming/utility-scripts/move-sink-inputs.pl "HDA Intel PCH"
+    # bindsym $ctl+XF86AudioRaiseVolume exec ~/programming/utility-scripts/move-sink-inputs.pl "HDA Intel HDMI"
 
-bindsym XF86Back exec --no-startup-id light -U 10
-bindsym XF86Forward exec --no-startup-id light -A 10
+    set $jack "alsa_output.pci-0000_00_1b.0.analog-stereo"
+    set $hdmi "alsa_output.pci-0000_00_03.0.hdmi-stereo"
 
-# bindsym --whole-window button9+button1 exec termite
+    bindsym $sft+XF86AudioLowerVolume exec pacmd set-default-sink $jack
+    bindsym $sft+XF86AudioRaiseVolume exec pacmd set-default-sink $hdmi
 
-bindsym Print exec grimshot save screen
-bindsym Ctrl+Print exec grimshot copy screen
-bindsym Shift+Print exec grimshot save area
-bindsym Ctrl+Shift+Print exec grimshot copy area
-bindsym $alt+Print exec grimshot save win
-bindsym Ctrl+$alt+Print exec grimshot copy win
+    bindsym $ctl+XF86AudioLowerVolume exec ~/programming/utility-scripts/move-sink-inputs.pl $jack
+    bindsym $ctl+XF86AudioRaiseVolume exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi
 
-# Task Managers
+    bindsym $ctl+$sft+XF86AudioLowerVolume \
+            exec ~/programming/utility-scripts/move-sink-inputs.pl $jack; \
+            exec pacmd set-default-sink $jack
+    bindsym $ctl+$sft+XF86AudioRaiseVolume \
+            exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi; \
+            exec pacmd set-default-sink $hdmi
+# }}}
 
-bindsym Ctrl+Shift+Escape exec termite -e htop
+# Backlight {{{
+    bindsym XF86Back exec light -U 10
+    bindsym XF86Forward exec light -A 10
 
-# File Managers
+    bindsym Shift+XF86Back exec light -U 5
+    bindsym Shift+XF86Forward exec light -A 5
 
-bindsym $win+a exec termite -e ranger
-bindsym $win+Shift+a exec thunar
+    bindsym Ctrl+XF86Back exec light -U 1
+    bindsym Ctrl+XF86Forward exec light -A 1
+
+    bindsym $alt+XF86Back exec light -U 0.1
+    bindsym $alt+XF86Forward exec light -A 0.1
+
+    bindsym XF86MonBrightnessDown exec light -U 10
+    bindsym XF86MonBrightnessUp exec light -A 10
+# }}}
+
+# Opacity {{{
+    bindsym XF86AudioPrev opacity 0.4
+    bindsym XF86AudioStop opacity 0.7
+    bindsym XF86AudioNext opacity 1.0
+# }}}
+
+# Screenshot {{{
+    bindsym Print           exec grimshot save screen
+    bindsym $ctl+Print      exec grimshot copy screen
+    bindsym $sft+Print      exec grimshot save area
+    bindsym $ctl+$sft+Print exec grimshot copy area
+    bindsym $alt+Print      exec grimshot save win
+    bindsym $ctl+$alt+Print exec grimshot copy win
+# }}}
+
+# Task Managers {{{
+    bindsym Ctrl+Shift+Escape exec termite -e htop
+# }}}
+
+# File Managers {{{
+    bindsym $win+a exec termite -e ranger
+    bindsym $win+Shift+a exec thunar
+# }}}
+
+# Clipboard {{{
+    bindsym $win+c exec clipman pick -t wofi
+    exec wl-paste -t text --watch clipman store
+# }}}
+
+# Exec
+
 
 # End
 
-include /etc/sway/config.d/*
+# bindsym --whole-window button9+button1 exec termite
+
+# include /etc/sway/config.d/*

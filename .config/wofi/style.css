@@ -1,0 +1,16 @@
+#outer-box {
+    padding: 5px;
+}
+
+#input {
+    margin-bottom: 5px;
+}
+
+#entry:nth-child(2n) {
+    background-color: lightgray;
+    /* border: 3px solid gray; */
+}
+
+#entry:selected {
+    background-color: green;
+}

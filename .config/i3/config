@@ -43,7 +43,7 @@
   # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
   # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
   # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-  
+
   # Use Mouse+$win to drag floating windows to their wanted position
   floating_modifier $win
 
@@ -89,8 +89,15 @@
   bindsym $win+Shift+Up move up
   bindsym $win+Shift+Right move right
 
+  # move workspace
+  bindsym $win+Ctrl+h move workspace to output left
+  bindsym $win+Ctrl+j move workspace to output down
+  bindsym $win+Ctrl+k move workspace to output up
+  bindsym $win+Ctrl+l move workspace to output right
+
   # split in horizontal orientation
-  bindsym $win+h split h
+  # bindsym $win+h split h
+  bindsym $win+b split h
 
   # split in vertical orientation
   bindsym $win+v split v
@@ -483,7 +490,7 @@ gaps inner 10
     # Left Click-and-drag
     bindsym Shift+s exec xdotool mousedown 1
 
-    # Middle Click-and-drag 
+    # Middle Click-and-drag
     bindsym Shift+d exec xdotool mousedown 2
 
     # Right Click-and-drag
