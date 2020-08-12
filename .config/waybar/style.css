@@ -78,7 +78,8 @@ window#waybar.chromium {
 #tray,
 #mode,
 #idle_inhibitor,
-#mpd {
+#mpd,
+#custom-frequency {
     padding: 0 10px;
     margin: 0 4px;
     color: #ffffff;
@@ -202,3 +203,6 @@ label:focus {
     background-color: #51a37a;
 }
 
+#custom-frequency {
+    background-color: #c55c5c;
+}

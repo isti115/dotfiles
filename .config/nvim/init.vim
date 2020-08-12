@@ -11,6 +11,9 @@ set foldmethod=marker
 set noshelltemp
 
 command! MakeDir !mkdir -p %:h
+command! WlCopy w !wl-copy
+
+tnoremap <Esc> <C-\><C-n>
 
 call plug#begin()
 Plug 'tpope/vim-commentary'

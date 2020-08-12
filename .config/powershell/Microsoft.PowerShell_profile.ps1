@@ -20,10 +20,12 @@ Import-Module oh-my-posh
 # Set-Prompt
 Set-Theme AgnosterPlus
 
-$ENV:TERM = "xterm"
-$ENV:EDITOR = "nvim"
-$ENV:VISUAL = "nvim"
+# $ENV:TERM = "xterm"
+# $ENV:EDITOR = "nvim"
+# $ENV:VISUAL = "nvim"
 # $SHELL = $ENV:SHELL
+
+$MaximumHistoryCount = 32767
 
 Set-Alias tp trash-put
 

@@ -10,6 +10,8 @@ font pango:FontAwesome 5 Free 10
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
+
+# Modifiers:
 set $win Mod4
 set $alt Mod1
 set $ctl Ctrl
@@ -20,6 +22,13 @@ set $left  h
 set $down  j
 set $up    k
 set $right l
+
+# Paths
+set $util ~/programming/utility-scripts
+
+# Outputs
+set $laptop eDP-1
+set $hdmi   HDMI-A-1
 
 # Your preferred terminal emulator
 # set $term termite
@@ -41,9 +50,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output eDP-1    position 0    600
-output HDMI-A-1 position 1920 0
-# output HEADLESS-1 position 325 1080
+output $laptop position 0    600
+output $hdmi   position 1920 0
+
+output HEADLESS-1 position 2560 1440
 
 ### Idle configuration
 #
@@ -77,7 +87,10 @@ input 1133:16489:Logitech_MX_Master_2S {
   pointer_accel 0
 }
 
-input 2:14:ETPS/2_Elantech_Touchpad tap enabled
+input 2:14:ETPS/2_Elantech_Touchpad {
+  tap enabled
+  natural_scroll enabled
+}
 
 seat * hide_cursor 1500
 
@@ -87,6 +100,9 @@ input type:keyboard {
   # xkb_layout us-f-hu
   # xkb_file ~/.config/xkb/test/custom.xkb
   xkb_file ~/.config/xkb/us-f-hu.xkb
+
+  # repeat_delay 1000
+  # repeat_rate 10
 }
 
 # input "1241:659:USB-HID_Keyboard" {
@@ -113,6 +129,9 @@ input type:keyboard {
 #
     # Start a terminal
     bindsym $win+Return exec termite # $term
+
+    # Start an editor
+    bindsym $win+$sft+Return exec termite -e "pwsh -c ec"
 
     # Kill focused window
     bindsym $win+Shift+q kill
@@ -196,6 +215,25 @@ input type:keyboard {
   set $ws9  9
   set $ws10 10
 
+  set $ws11 11
+  set $ws12 12
+  set $ws13 13
+  set $ws14 14
+  set $ws15 15
+  set $ws16 16
+  set $ws17 17
+  set $ws18 18
+  set $ws19 19
+  set $ws20 20
+
+  workspace $ws1 output $hdmi
+  workspace $ws2 output $laptop
+  workspace $ws3 output $laptop
+  workspace $ws4 output $hdmi
+  workspace $ws6 output $hdmi
+  workspace $ws7 output $laptop
+  workspace $ws8 output $hdmi
+
   set $key1  XF86Explorer
   set $key2  XF86Calculator
   set $key3  XF86Search
@@ -230,28 +268,39 @@ input type:keyboard {
   bindsym $key9  workspace $ws9
   bindsym $key10 workspace $ws10
 
-  # Move focused container to workspace
-  bindsym $win+Shift+1 move container to workspace 1
-  bindsym $win+Shift+2 move container to workspace 2
-  bindsym $win+Shift+3 move container to workspace 3
-  bindsym $win+Shift+4 move container to workspace 4
-  bindsym $win+Shift+5 move container to workspace 5
-  bindsym $win+Shift+6 move container to workspace 6
-  bindsym $win+Shift+7 move container to workspace 7
-  bindsym $win+Shift+8 move container to workspace 8
-  bindsym $win+Shift+9 move container to workspace 9
-  bindsym $win+Shift+0 move container to workspace 10
+  bindsym $alt+$key1  workspace $ws11
+  bindsym $alt+$key2  workspace $ws12
+  bindsym $alt+$key3  workspace $ws13
+  bindsym $alt+$key4  workspace $ws14
+  bindsym $alt+$key5  workspace $ws15
+  bindsym $alt+$key6  workspace $ws16
+  bindsym $alt+$key7  workspace $ws17
+  bindsym $alt+$key8  workspace $ws18
+  bindsym $alt+$key9  workspace $ws19
+  bindsym $alt+$key10 workspace $ws20
 
-  bindsym Shift+$key1  move container to workspace $ws1
-  bindsym Shift+$key2  move container to workspace $ws2
-  bindsym Shift+$key3  move container to workspace $ws3
-  bindsym Shift+$key4  move container to workspace $ws4
-  bindsym Shift+$key5  move container to workspace $ws5
-  bindsym Shift+$key6  move container to workspace $ws6
-  bindsym Shift+$key7  move container to workspace $ws7
-  bindsym Shift+$key8  move container to workspace $ws8
-  bindsym Shift+$key9  move container to workspace $ws9
-  bindsym Shift+$key10 move container to workspace $ws10
+  # Move focused container to workspace
+  bindsym $win+$sft+1 move container to workspace 1
+  bindsym $win+$sft+2 move container to workspace 2
+  bindsym $win+$sft+3 move container to workspace 3
+  bindsym $win+$sft+4 move container to workspace 4
+  bindsym $win+$sft+5 move container to workspace 5
+  bindsym $win+$sft+6 move container to workspace 6
+  bindsym $win+$sft+7 move container to workspace 7
+  bindsym $win+$sft+8 move container to workspace 8
+  bindsym $win+$sft+9 move container to workspace 9
+  bindsym $win+$sft+0 move container to workspace 10
+
+  bindsym $sft+$key1  move container to workspace $ws1
+  bindsym $sft+$key2  move container to workspace $ws2
+  bindsym $sft+$key3  move container to workspace $ws3
+  bindsym $sft+$key4  move container to workspace $ws4
+  bindsym $sft+$key5  move container to workspace $ws5
+  bindsym $sft+$key6  move container to workspace $ws6
+  bindsym $sft+$key7  move container to workspace $ws7
+  bindsym $sft+$key8  move container to workspace $ws8
+  bindsym $sft+$key9  move container to workspace $ws9
+  bindsym $sft+$key10 move container to workspace $ws10
   # Note: workspaces can have any name you want, not just numbers.
   # We just use 1-10 as the default.
 
@@ -276,10 +325,10 @@ input type:keyboard {
     bindsym --whole-window button9 fullscreen toggle
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $win+Shift+space floating toggle
+    bindsym $win+$sft+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $win+space focus mode_toggle
+    bindsym $win+$alt+space focus mode_toggle
 
     # Move focus to the parent container
     # bindsym $win+a focus parent
@@ -326,10 +375,88 @@ mode "resize" {
 }
 bindsym $win+r mode "resize"
 
+##############
+# MOUSE MODE #
+##############
+
+# {{{
+
+  mode "mouse" {
+
+    set $speed_precise 1
+    set $speed_slow    10
+    set $speed_normal  50
+    set $speed_quick   100
+    set $speed_fast    250
+
+    set $key_precise $sft+$alt
+    set $key_slow    $sft
+    # set $key_normal
+    set $key_quick   $ctl
+    set $key_fast    $ctl+alt
+
+    # Movement
+
+    bindsym $key_precise+h seat * cursor move -$speed_precise  0
+    bindsym $key_precise+j seat * cursor move  0  $speed_precise
+    bindsym $key_precise+k seat * cursor move  0 -$speed_precise
+    bindsym $key_precise+l seat * cursor move  $speed_precise  0
+
+    bindsym $key_slow+h seat * cursor move -$speed_slow  0
+    bindsym $key_slow+j seat * cursor move  0  $speed_slow
+    bindsym $key_slow+k seat * cursor move  0 -$speed_slow
+    bindsym $key_slow+l seat * cursor move  $speed_slow  0
+
+    bindsym h seat * cursor move -$speed_normal  0
+    bindsym j seat * cursor move  0  $speed_normal
+    bindsym k seat * cursor move  0 -$speed_normal
+    bindsym l seat * cursor move  $speed_normal  0
+
+    bindsym $key_quick+h seat * cursor move -$speed_quick  0
+    bindsym $key_quick+j seat * cursor move  0  $speed_quick
+    bindsym $key_quick+k seat * cursor move  0 -$speed_quick
+    bindsym $key_quick+l seat * cursor move  $speed_quick  0
+
+    bindsym $key_fast+h seat * cursor move -$speed_fast  0
+    bindsym $key_fast+j seat * cursor move  0  $speed_fast
+    bindsym $key_fast+k seat * cursor move  0 -$speed_fast
+    bindsym $key_fast+l seat * cursor move  $speed_fast  0
+
+    # Buttons
+
+    bindsym s seat * cursor press button1
+    bindsym --release s seat * cursor release button1
+    # bindsym $sft+s seat * cursor press button1
+
+    bindsym d seat * cursor press button2
+    bindsym --release d seat * cursor release button2
+
+    bindsym f seat * cursor press button3
+    bindsym --release f seat * cursor release button3
+
+    bindsym e seat * cursor press button4
+    # bindsym --release e seat * cursor release button4
+
+    bindsym c seat * cursor press button5
+    # bindsym --release c seat * cursor release button5
+
+    # return to normal keybindings -- IMPORTANT!!
+
+    bindsym Escape mode "default"; seat * hide_cursor 1500
+  }
+
+  # bindsym $win+Mod1+Shift+m mode "mouse"
+  bindsym $win+m mode "mouse"; seat * hide_cursor 0
+
+# }}}
+
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+
+exec_always pkill -f mediaplayer.py --signal 9
+
 bar {
     # position top
 
@@ -385,11 +512,11 @@ bar {
     bindsym XF86Back exec light -U 10
     bindsym XF86Forward exec light -A 10
 
-    bindsym Shift+XF86Back exec light -U 5
-    bindsym Shift+XF86Forward exec light -A 5
+    bindsym $sft+XF86Back exec light -U 5
+    bindsym $sft+XF86Forward exec light -A 5
 
-    bindsym Ctrl+XF86Back exec light -U 1
-    bindsym Ctrl+XF86Forward exec light -A 1
+    bindsym $ctl+XF86Back exec light -U 1
+    bindsym $ctl+XF86Forward exec light -A 1
 
     bindsym $alt+XF86Back exec light -U 0.1
     bindsym $alt+XF86Forward exec light -A 0.1
@@ -399,9 +526,25 @@ bar {
 # }}}
 
 # Opacity {{{
-    bindsym XF86AudioPrev opacity 0.4
-    bindsym XF86AudioStop opacity 0.7
-    bindsym XF86AudioNext opacity 1.0
+    bindsym XF86AudioPrev opacity minus 0.2
+    bindsym XF86AudioStop opacity set 1.0
+    bindsym XF86AudioNext opacity plus 0.2
+
+    bindsym $sft+XF86AudioPrev opacity minus 0.1
+    bindsym $sft+XF86AudioStop opacity set 0.75
+    bindsym $sft+XF86AudioNext opacity plus 0.1
+
+    bindsym $ctl+XF86AudioPrev opacity minus 0.05
+    bindsym $ctl+XF86AudioStop opacity set 0.5
+    bindsym $ctl+XF86AudioNext opacity plus 0.05
+
+    bindsym $alt+XF86AudioPrev opacity minus 0.01
+    bindsym $alt+XF86AudioStop opacity set 0.25
+    bindsym $alt+XF86AudioNext opacity plus 0.01
+
+    bindsym --whole-window $alt+button5 opacity minus 0.025
+    bindsym --whole-window $alt+button2 opacity set 1.0
+    bindsym --whole-window $alt+button4 opacity plus 0.025
 # }}}
 
 # Screenshot {{{
@@ -411,6 +554,8 @@ bar {
     bindsym $ctl+$sft+Print exec grimshot copy area
     bindsym $alt+Print      exec grimshot save win
     bindsym $ctl+$alt+Print exec grimshot copy win
+
+    bindsym $win+Print      exec $util/swappy-area.sh
 # }}}
 
 # Task Managers {{{
@@ -424,11 +569,42 @@ bar {
 
 # Clipboard {{{
     bindsym $win+c exec clipman pick -t wofi
-    exec wl-paste -t text --watch clipman store
+    bindsym $win+$ctl+c exec clipman clear -t wofi
+    exec wl-paste -t text --watch clipman store --max-items=100
+# }}}
+
+# Notifications
+
+bindsym $ctl+$win+space exec makoctl dismiss
+# exec mako
+
+# === Firefox Windows === {{{
+
+  # assign [name="[Read/Watch]"] $ws1
+  # assign [name="[Music]"] $ws2
+  # assign [name="[ORSI/Agda]"] $ws3
+  # assign [name="[CodeJam]"] $ws5
+  # assign [name="[Minecraft]"] $ws6
+  # assign [name="[Arch]"] $ws7
+  # assign [name="[Communication/Organization]"] $ws8
+
+  bindsym $win+shift+f \
+    [title="Read/Watch"] move workspace $ws1; \
+    [title="Music"] move workspace $ws2; \
+    [title="ORSI/Agda"] move workspace $ws3; \
+    [title="Flockwave"] move workspace $ws3; \
+    [title="CodeJam"] move workspace $ws5; \
+    [title="Wedding"] move workspace $ws6; \
+    [title="Minecraft"] move workspace $ws6; \
+    [title="Arch"] move workspace $ws7; \
+    [title="Communication/Organization"] move workspace $ws8
+
 # }}}
 
 # Exec
 
+bindsym $win+space exec flash_window
+exec flashfocus
 
 # End
 

@@ -17,6 +17,8 @@
 
   set $win Mod4
   set $alt Mod1
+  set $ctl Ctrl
+  set $sft Shift
 
   # Font for window titles. Will also be used by the bar unless a different font
   # is used in the bar {} block below.
@@ -58,8 +60,10 @@
   # start dmenu (a program launcher)
   # bindsym $win+d exec dmenu_run
   bindsym $win+d exec rofi -show run
-  bindsym $win+k exec rofi -show window -show-icons
-  bindsym $win+shift+k exec rofi -show windowcd -show-icons
+  # bindsym $win+k exec rofi -show window -show-icons
+  bindsym $alt+Tab exec rofi -show window -show-icons
+  # bindsym $win+Shift+k exec rofi -show windowcd -show-icons
+  bindsym $alt+Shift+Tab exec rofi -show windowcd -show-icons
   # There also is the (new) i3-dmenu-desktop which only displays applications
   # shipping a .desktop file. It is a wrapper around dmenu, so you need that
   # installed.
@@ -522,7 +526,8 @@ bindsym Ctrl+Shift+Escape exec termite -e htop
 
 # File Managers
 
-bindsym $win+a exec termite -e ranger
+# bindsym $win+a exec termite -e ranger
+bindsym $win+a exec urxvt -e ranger
 bindsym $win+Shift+a exec thunar
 
 # screenshot
@@ -600,8 +605,11 @@ bindsym $alt+XF86AudioPrev exec --no-startup-id picom-trans -c +5
 
 # scratchpad
 
-bindsym $win+$alt+j move scratchpad
-bindsym $win+$alt+l scratchpad show
+# bindsym $win+$alt+j move scratchpad
+# bindsym $win+$alt+l scratchpad show
+
+bindsym $win+plus move scratchpad
+bindsym $win+minus scratchpad show
 
 # emoji
 
@@ -621,6 +629,13 @@ bindsym $win+Shift+period exec "splatmoji type"
 # clipboard
 
 bindsym $win+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+# displays
+
+bindsym $win+F1 exec xrandr --output eDP-1-1 --auto
+bindsym $win+F2 exec xrandr --output eDP-1-1 --off
+bindsym $win+F3 exec xrandr --output eDP-1-1 --auto --output HDMI-1-1 --auto --right-of eDP-1-1
+bindsym $win+F4 exec xrandr --output HDMI-1-1 --auto --right-of eDP-1-1
 
 # === Firefox Windows ===
 
@@ -672,3 +687,5 @@ for_window [title="calendar.google.com"] floating enable resize set 800 600, mov
 
 # autostart
 # exec discord
+
+exec prime-offload

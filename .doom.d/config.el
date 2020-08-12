@@ -66,6 +66,7 @@
   (require 'flycheck-xo)
   (flycheck-xo-setup))
 
+
 (add-hook 'agda2-mode-hook
           (lambda ()
             (setq company-backends '(company-dabbrev-code))
@@ -76,11 +77,17 @@
 ;; (setq-default js-indent-level 2)
 (add-hook 'js2-mode-hook
           (lambda ()
+            ;; (setq company-backends '(ac-js2-company))
+            ;; (add-to-list 'company-backends 'ac-js2-company)
+            ;; (setq company-backends '(company-capf company-tide))
+            ;; (add-to-list 'company-backends 'company-tide)
             (setq js2-basic-offset 2)
             (setq tab-width 2)
             (setq evil-shift-width 2)))
 
-(add-hook 'js2-mode-hook 'eslintd-fix-mode)
+(set-company-backend! 'js2-mode '(:separate company-capf company-tide))
+
+;; (add-hook 'js2-mode-hook 'eslintd-fix-mode)
 
 ;; (eval-after-load 'js2-mode
 ;;   '(add-hook 'js2-mode-hook
