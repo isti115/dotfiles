@@ -59,3 +59,22 @@ function sw {
 # function em {
 #   emacsclient -a="" -nw $args
 # }
+
+function extension-statistics {
+  find . -type f | sed 's/.*\.//' | sort | uniq -c
+}
+
+Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Insert -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert('ranger .')
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Command -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert('ranger .')
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+
+function rr {
+  ranger .
+}
