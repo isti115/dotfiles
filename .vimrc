@@ -17,4 +17,5 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-lion'
 Plug 'pprovost/vim-ps1'
+Plug 'derekelkins/agda-vim'
 call plug#end()
