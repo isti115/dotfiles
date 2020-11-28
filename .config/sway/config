@@ -483,7 +483,16 @@ bar {
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5dB
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5dB
 
+    bindsym Undo exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+    bindsym Redo exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+
+    bindsym --whole-window button8 nop
+    bindsym --whole-window button8+button5 exec pactl set-sink-volume @DEFAULT_SINK@ -3dB
+    bindsym --whole-window button8+button4 exec pactl set-sink-volume @DEFAULT_SINK@ +3dB
+
     bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym $sft+Undo exec playerctl previous
+    bindsym $sft+Redo exec playerctl next
 
     # bindsym $sft+XF86AudioLowerVolume exec ~/programming/utility-scripts/set-default-sink.pl "HDA Intel PCH"
     # bindsym $sft+XF86AudioRaiseVolume exec ~/programming/utility-scripts/set-default-sink.pl "HDA Intel HDMI"
@@ -494,16 +503,23 @@ bar {
     set $jack "alsa_output.pci-0000_00_1b.0.analog-stereo"
     set $hdmi "alsa_output.pci-0000_00_03.0.hdmi-stereo"
 
-    bindsym $sft+XF86AudioLowerVolume exec pacmd set-default-sink $jack
-    bindsym $sft+XF86AudioRaiseVolume exec pacmd set-default-sink $hdmi
+    # bindsym $sft+XF86AudioLowerVolume exec pacmd set-default-sink $jack
+    # bindsym $sft+XF86AudioRaiseVolume exec pacmd set-default-sink $hdmi
 
-    bindsym $ctl+XF86AudioLowerVolume exec ~/programming/utility-scripts/move-sink-inputs.pl $jack
-    bindsym $ctl+XF86AudioRaiseVolume exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi
+    # bindsym $ctl+XF86AudioLowerVolume exec ~/programming/utility-scripts/move-sink-inputs.pl $jack
+    # bindsym $ctl+XF86AudioRaiseVolume exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi
 
-    bindsym $ctl+$sft+XF86AudioLowerVolume \
+    # bindsym $ctl+$sft+XF86AudioLowerVolume \
+    #         exec ~/programming/utility-scripts/move-sink-inputs.pl $jack; \
+    #         exec pacmd set-default-sink $jack
+    # bindsym $ctl+$sft+XF86AudioRaiseVolume \
+    #         exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi; \
+    #         exec pacmd set-default-sink $hdmi
+
+    bindsym $sft+XF86AudioLowerVolume \
             exec ~/programming/utility-scripts/move-sink-inputs.pl $jack; \
             exec pacmd set-default-sink $jack
-    bindsym $ctl+$sft+XF86AudioRaiseVolume \
+    bindsym $sft+XF86AudioRaiseVolume \
             exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi; \
             exec pacmd set-default-sink $hdmi
 # }}}
