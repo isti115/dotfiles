@@ -1,7 +1,9 @@
+[
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     // "output": ["eDP-1"],
+    "output": ["eDP-1", "HDMI-A-1"],
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
@@ -68,7 +70,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d | %H:%M}",
+        "on-click-right": "firefox-developer-edition -ssb \"calendar.google.com\""
     },
     "cpu": {
         "format": "{usage}% ",
@@ -153,6 +156,63 @@
         "format": "{} GHz ",
         "interval": 5,
         "exec": "lscpu | perl -ne 'if(/CPU MHz:\\s+(.*)/){printf(q(%.2f), $1/1000)}'"
-
-    }
-}
+    },
+},
+{
+    "output": ["HEADLESS-1"],
+    "height": 30, // Waybar height (to be removed for auto height)
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["pulseaudio", "memory", "cpu", "custom/frequency", "temperature", "clock", "tray"],
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d | %H:%M}",
+        "on-click-right": "firefox-developer-edition -ssb \"calendar.google.com\""
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/frequency": {
+        "format": "{} GHz ",
+        "interval": 5,
+        "exec": "lscpu | perl -ne 'if(/CPU MHz:\\s+(.*)/){printf(q(%.2f), $1/1000)}'"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+},
+]

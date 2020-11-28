@@ -27,8 +27,8 @@ set $right l
 set $util ~/programming/utility-scripts
 
 # Outputs
-set $laptop eDP-1
-set $hdmi   HDMI-A-1
+set $laptop  eDP-1
+set $monitor HDMI-A-1
 
 # Your preferred terminal emulator
 # set $term termite
@@ -50,10 +50,18 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output $laptop position 0    600
-output $hdmi   position 1920 0
+output $laptop  position 0    600
+output $monitor position 1920 0
 
-output HEADLESS-1 position 2560 1440
+# output HEADLESS-1 position 2560 1440
+# output HEADLESS-1 position 4480 600
+# output HEADLESS-1 resolution 768x1024
+
+# Blackout
+bindsym $alt+Menu output * dpms off
+bindsym $sft+Menu output * dpms on
+# bindsym $ctl+Menu exec feh --zoom fill ~/Pictures/black.png
+bindsym $ctl+Menu exec feh --fullscreen ~/Pictures/black.png
 
 ### Idle configuration
 #
@@ -214,7 +222,6 @@ input type:keyboard {
   set $ws8  8
   set $ws9  9
   set $ws10 10
-
   set $ws11 11
   set $ws12 12
   set $ws13 13
@@ -226,13 +233,13 @@ input type:keyboard {
   set $ws19 19
   set $ws20 20
 
-  workspace $ws1 output $hdmi
+  workspace $ws1 output $monitor
   workspace $ws2 output $laptop
   workspace $ws3 output $laptop
-  workspace $ws4 output $hdmi
-  workspace $ws6 output $hdmi
+  workspace $ws4 output $monitor
+  workspace $ws6 output $monitor
   workspace $ws7 output $laptop
-  workspace $ws8 output $hdmi
+  workspace $ws8 output $monitor
 
   set $key1  XF86Explorer
   set $key2  XF86Calculator
@@ -244,6 +251,11 @@ input type:keyboard {
   set $key8  XF86HomePage
   set $key9  Hangul_Hanja
   set $key10 Hangul
+  set $key11 XF86Open
+  set $key12 Help
+  set $key13 SunProps
+  set $key14 SunFront
+  set $key15 Find
 
   # Switch to workspace
   bindsym $win+1 workspace 1
@@ -257,6 +269,17 @@ input type:keyboard {
   bindsym $win+9 workspace 9
   bindsym $win+0 workspace 10
 
+  bindsym $win+$alt+1 workspace 11
+  bindsym $win+$alt+2 workspace 12
+  bindsym $win+$alt+3 workspace 13
+  bindsym $win+$alt+4 workspace 14
+  bindsym $win+$alt+5 workspace 15
+  bindsym $win+$alt+6 workspace 16
+  bindsym $win+$alt+7 workspace 17
+  bindsym $win+$alt+8 workspace 18
+  bindsym $win+$alt+9 workspace 19
+  bindsym $win+$alt+0 workspace 20
+
   bindsym $key1  workspace $ws1
   bindsym $key2  workspace $ws2
   bindsym $key3  workspace $ws3
@@ -267,6 +290,11 @@ input type:keyboard {
   bindsym $key8  workspace $ws8
   bindsym $key9  workspace $ws9
   bindsym $key10 workspace $ws10
+  bindsym $key11 workspace $ws11
+  bindsym $key12 workspace $ws12
+  bindsym $key13 workspace $ws13
+  bindsym $key14 workspace $ws14
+  bindsym $key15 workspace $ws15
 
   bindsym $alt+$key1  workspace $ws11
   bindsym $alt+$key2  workspace $ws12
@@ -290,6 +318,16 @@ input type:keyboard {
   bindsym $win+$sft+8 move container to workspace 8
   bindsym $win+$sft+9 move container to workspace 9
   bindsym $win+$sft+0 move container to workspace 10
+  bindsym $win+$alt+$sft+1 move container to workspace 11
+  bindsym $win+$alt+$sft+2 move container to workspace 12
+  bindsym $win+$alt+$sft+3 move container to workspace 13
+  bindsym $win+$alt+$sft+4 move container to workspace 14
+  bindsym $win+$alt+$sft+5 move container to workspace 15
+  bindsym $win+$alt+$sft+6 move container to workspace 16
+  bindsym $win+$alt+$sft+7 move container to workspace 17
+  bindsym $win+$alt+$sft+8 move container to workspace 18
+  bindsym $win+$alt+$sft+9 move container to workspace 19
+  bindsym $win+$alt+$sft+0 move container to workspace 20
 
   bindsym $sft+$key1  move container to workspace $ws1
   bindsym $sft+$key2  move container to workspace $ws2
@@ -301,10 +339,27 @@ input type:keyboard {
   bindsym $sft+$key8  move container to workspace $ws8
   bindsym $sft+$key9  move container to workspace $ws9
   bindsym $sft+$key10 move container to workspace $ws10
+  bindsym $sft+$key11 move container to workspace $ws11
+  bindsym $sft+$key12 move container to workspace $ws12
+  bindsym $sft+$key13 move container to workspace $ws13
+  bindsym $sft+$key14 move container to workspace $ws14
+  bindsym $sft+$key15 move container to workspace $ws15
+
+  bindsym $alt+$sft+$key1  move container to workspace $ws11
+  bindsym $alt+$sft+$key2  move container to workspace $ws12
+  bindsym $alt+$sft+$key3  move container to workspace $ws13
+  bindsym $alt+$sft+$key4  move container to workspace $ws14
+  bindsym $alt+$sft+$key5  move container to workspace $ws15
+  bindsym $alt+$sft+$key6  move container to workspace $ws16
+  bindsym $alt+$sft+$key7  move container to workspace $ws17
+  bindsym $alt+$sft+$key8  move container to workspace $ws18
+  bindsym $alt+$sft+$key9  move container to workspace $ws19
+  bindsym $alt+$sft+$key10 move container to workspace $ws20
   # Note: workspaces can have any name you want, not just numbers.
   # We just use 1-10 as the default.
 
   bindsym XF86Tools workspace back_and_forth
+  bindsym Shift+XF86Tools workspace next
   # bindsym $win+Tab workspace back_and_forth
 #
 # Layout stuff:
@@ -594,6 +649,11 @@ bar {
 bindsym $ctl+$win+space exec makoctl dismiss
 # exec mako
 
+# Assignments
+
+# assign [class="vlc"] $ws2
+assign [class="discord"] $ws8
+
 # === Firefox Windows === {{{
 
   # assign [name="[Read/Watch]"] $ws1
@@ -605,6 +665,7 @@ bindsym $ctl+$win+space exec makoctl dismiss
   # assign [name="[Communication/Organization]"] $ws8
 
   bindsym $win+shift+f \
+    [class="firefox"] move workspace $ws10; \
     [title="Read/Watch"] move workspace $ws1; \
     [title="Music"] move workspace $ws2; \
     [title="ORSI/Agda"] move workspace $ws3; \
