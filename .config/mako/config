@@ -1,0 +1,13 @@
+layer=overlay
+
+border-radius=5
+
+# [summary="Katica003 (#general, Text Channels)"]
+[summary="Katica003 (#general, Text Channels)"]
+border-color=#8a488a
+background-color=#bd62bd
+text-color=#ffffff
+font=Roboto 16
+width=500
+height=300
+padding=20

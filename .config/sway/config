@@ -105,6 +105,8 @@ seat * hide_cursor 1500
 input type:keyboard {
 # input * {
   # xkb_layout us
+  # xkb_layout hu
+  # xkb_variant 101_qwerty_dot_nodead
   # xkb_layout us-f-hu
   # xkb_file ~/.config/xkb/test/custom.xkb
   xkb_file ~/.config/xkb/us-f-hu.xkb
@@ -137,9 +139,12 @@ input type:keyboard {
 #
     # Start a terminal
     bindsym $win+Return exec termite # $term
+    bindsym $win+$alt+Return exec termite -e bash
 
     # Start an editor
-    bindsym $win+$sft+Return exec termite -e "pwsh -c ec"
+    # bindsym $win+$sft+Return exec termite -e "pwsh -c ec"
+    bindsym $win+$sft+Return exec termite -e "emacsclient --alternate-editor='' -t --create-frame $args"
+    bindsym $win+$ctl+Return exec termite -e nvim
 
     # Kill focused window
     bindsym $win+Shift+q kill
@@ -149,6 +154,8 @@ input type:keyboard {
 
     bindsym $win+d exec wofi --show drun --allow-images
     bindsym $win+Shift+d exec wofi --show run
+
+    bindsym $win+q exec $util/quick-commands.sh
 
     # Drag floating windows by holding down $win and left mouse button.
     # Resize them with right mouse button + $win.
@@ -613,9 +620,9 @@ bar {
     bindsym $alt+XF86AudioStop opacity set 0.25
     bindsym $alt+XF86AudioNext opacity plus 0.01
 
-    bindsym --whole-window $alt+button5 opacity minus 0.025
-    bindsym --whole-window $alt+button2 opacity set 1.0
-    bindsym --whole-window $alt+button4 opacity plus 0.025
+    bindsym --whole-window $win+button5 opacity minus 0.025
+    bindsym --whole-window $win+button2 opacity set 1.0
+    bindsym --whole-window $win+button4 opacity plus 0.025
 # }}}
 
 # Screenshot {{{
@@ -627,6 +634,10 @@ bar {
     bindsym $ctl+$alt+Print exec grimshot copy win
 
     bindsym $win+Print      exec $util/swappy-area.sh
+# }}}
+
+# Emoji {{{
+    bindsym $win+period exec "splatmoji copy"
 # }}}
 
 # Task Managers {{{
@@ -647,6 +658,7 @@ bar {
 # Notifications
 
 bindsym $ctl+$win+space exec makoctl dismiss
+bindsym $ctl+$win+$alt+space exec makoctl dismiss --all
 # exec mako
 
 # Assignments
@@ -676,12 +688,21 @@ assign [class="discord"] $ws8
     [title="Arch"] move workspace $ws7; \
     [title="Communication/Organization"] move workspace $ws8
 
+  # bindsym $win+$shift+c firefox-developer-edition -ssb "calendar.google.com"
+
+  for_window [title="calendar.google.com"] \
+    floating enable, \
+    resize set 1280 720, \
+    move position 640 350, \
+    opacity set 0.9
+
 # }}}
 
 # Exec
 
-bindsym $win+space exec flash_window
-exec flashfocus
+# bindsym $win+space exec flash_window
+# exec flashfocus
+exec xrdb -load ~/.Xresources
 
 # End
 
