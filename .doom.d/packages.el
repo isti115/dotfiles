@@ -18,6 +18,8 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 
+(package! eslintd-fix)
+;; (package! vue-mode)
 (package! powershell)
 ;; (package! ac-js2)
 (package! tide)

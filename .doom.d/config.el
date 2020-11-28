@@ -62,10 +62,9 @@
 
 ;; Own stuff
 
-(with-eval-after-load 'flycheck
-  (require 'flycheck-xo)
-  (flycheck-xo-setup))
-
+;; (with-eval-after-load 'flycheck
+;;   (require 'flycheck-xo)
+;;   (flycheck-xo-setup))
 
 (add-hook 'agda2-mode-hook
           (lambda ()
@@ -73,6 +72,23 @@
             ;; (add-to-list 'company-backends 'company-dabbrev-code)
             (setq tab-width 2)
             (setq evil-shift-width 2)))
+
+(defun isti115/eslint-fix ()
+  "Fix JS files using eslint"
+  (interactive)
+  (shell-command (concat "eslint --fix '" buffer-file-name "'"))
+  (revert-buffer)
+  )
+
+(defun isti115/standard-fix ()
+  "Fix JS files using the standard code style"
+  (interactive)
+  ;; (shell-command (concat "standard --fix " buffer-file-name))
+  (shell-command (concat "standard --fix '" buffer-file-name "'"))
+  (revert-buffer)
+  )
+
+;; (setq-default js-indent-level 2)
 
 ;; (setq-default js-indent-level 2)
 (add-hook 'js2-mode-hook
@@ -83,7 +99,10 @@
             ;; (add-to-list 'company-backends 'company-tide)
             (setq js2-basic-offset 2)
             (setq tab-width 2)
-            (setq evil-shift-width 2)))
+            (setq evil-shift-width 2)
+            ;; (add-hook 'after-save-hook #'standard-fix)
+            ;; (add-hook 'after-save-hook 'isti115/standard-fix)
+            ))
 
 (set-company-backend! 'js2-mode '(:separate company-capf company-tide))
 
@@ -101,7 +120,8 @@
   (define-key evil-normal-state-map (kbd "z M-f") 'vimish-fold-avy))
 
 (map! :leader
-      :desc "Write and quit (Save and close)" "f w q" #'evil-save-and-close)
+      :desc "Write and quit (Save and close)" "f w q" #'evil-save-and-close
+      :desc "Copy whole file" "y" "myggyG`y") ;; Mark postition, yank and return
 
 (custom-set-faces!
   '(proof-locked-face :background "#003300")
@@ -122,3 +142,13 @@
             ;; (global-set-key (kbd "<next>") 'proof-assert-next-command-interactive)
             ;; (global-set-key (kbd "<scroll>") 'proof-goto-point)
             ))
+
+(map! :after agda2-mode
+      :map agda2-mode-map
+      :localleader
+      "gd"  #'agda2-goto-definition-keyboard
+      )
+
+;; (add-hook 'agda2-mode-hook
+;;           (lambda ()
+;;             ))
