@@ -10,13 +10,17 @@ Set-PSReadlineKeyHandler -Key Ctrl+s -Function ForwardSearchHistory -ViMode Comm
 
 # Set-PSReadlineKeyHandler -Key Ctrl+LeftArrow -Function ReverseSearchHistory -ViMode Command
 
+# Currently not in use:
+# Install-Module -Name PSFzf -Scope CurrentUser
+#
+# Active:
 # Install-Module posh-git -Scope CurrentUser
 # Install-Module oh-my-posh -Scope CurrentUser
-
 # https://github.com/JanDeDobbeleer/oh-my-posh
 
 Import-Module posh-git
 Import-Module oh-my-posh
+
 # Set-Prompt
 Set-Theme AgnosterPlus
 
@@ -64,17 +68,44 @@ function extension-statistics {
   find . -type f | sed 's/.*\.//' | sort | uniq -c
 }
 
-Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Insert -ScriptBlock {
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert('ranger .')
-    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-}
-Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Command -ScriptBlock {
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert('ranger .')
-    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+function exec($cmd) {
+  [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert($cmd)
+  [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 
-function rr {
+function ranger-here {
   ranger .
+}
+
+function fuzzy-history {
+  cat (Get-PSReadLineOption).HistorySavePath |
+    fzf --tac --no-sort --bind tab:toggle-sort --height "25%" |
+    Invoke-Expression
+}
+
+Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Insert -ScriptBlock {
+  exec('ranger-here')
+  # exec('ranger .')
+}
+Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Command -ScriptBlock {
+  exec('ranger-here')
+  # exec('ranger .')
+}
+
+Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Insert -ScriptBlock {
+  exec('fuzzy-history')
+  # exec(
+  #   'cat (Get-PSReadLineOption).HistorySavePath | ' +
+  #   "`n" +
+  #   'fzf --tac --no-sort --height "25%" | Invoke-Expression'
+  # )
+}
+Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Command -ScriptBlock {
+  exec('fuzzy-history')
+  # exec(
+  #   'cat (Get-PSReadLineOption).HistorySavePath | ' +
+  #   "`n" +
+  #   'fzf --tac --no-sort --height "25%" | Invoke-Expression'
+  # )
 }

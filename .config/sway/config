@@ -32,7 +32,7 @@ set $monitor HDMI-A-1
 
 # Your preferred terminal emulator
 # set $term termite
-# set $term alacritty
+set $term alacritty
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -138,13 +138,25 @@ input type:keyboard {
 # Basics:
 #
     # Start a terminal
-    bindsym $win+Return exec termite # $term
-    bindsym $win+$alt+Return exec termite -e bash
+    bindsym $win+Return exec $term
+    bindsym $win+$alt+Return exec $term -e bash
 
     # Start an editor
-    # bindsym $win+$sft+Return exec termite -e "pwsh -c ec"
-    bindsym $win+$sft+Return exec termite -e "emacsclient --alternate-editor='' -t --create-frame $args"
-    bindsym $win+$ctl+Return exec termite -e nvim
+    # bindsym $win+$sft+Return exec $term -e "pwsh -c ec"
+    bindsym $win+$sft+Return exec $term -e "emacsclient --alternate-editor='' -t --create-frame $args"
+    bindsym $win+$ctl+Return exec $term -e nvim; \
+                             exec bash -c 'sleep 0.25; pkill --signal SIGWINCH nvim'
+    # bindsym KP_Insert resize grow width 10px
+    bindsym KP_Insert exec pkill --signal SIGWINCH nvim
+
+    # bindsym $win+$ctl+Return exec $term -e nvim; \
+    #                          exec "bash -c 'sleep 0.25; \
+    #                                         swaymsg resize grow   width  10px; \
+    #                                         swaymsg resize grow   height 10px; \
+    #                                         swaymsg resize shrink width  10px; \
+    #                                         swaymsg resize shrink height 10px'"
+
+    # bindsym --release $win+$ctl+Return resize grow width 1px
 
     # Kill focused window
     bindsym $win+Shift+q kill
@@ -367,7 +379,7 @@ input type:keyboard {
 
   bindsym XF86Tools workspace back_and_forth
   bindsym Shift+XF86Tools workspace next
-  # bindsym $win+Tab workspace back_and_forth
+  bindsym $win+Tab workspace back_and_forth
 #
 # Layout stuff:
 #
@@ -424,6 +436,16 @@ mode "resize" {
     bindsym $down  resize grow   height 10px
     bindsym $up    resize shrink height 10px
     bindsym $right resize grow   width  10px
+
+    bindsym $sft+$left  resize shrink width  50px
+    bindsym $sft+$down  resize grow   height 50px
+    bindsym $sft+$up    resize shrink height 50px
+    bindsym $sft+$right resize grow   width  50px
+
+    bindsym $ctl+$left  resize shrink width  1px
+    bindsym $ctl+$down  resize grow   height 1px
+    bindsym $ctl+$up    resize shrink height 1px
+    bindsym $ctl+$right resize grow   width  1px
 
     # Ditto, with arrow keys
     # bindsym Left  resize shrink width  10px
@@ -641,11 +663,11 @@ bar {
 # }}}
 
 # Task Managers {{{
-    bindsym Ctrl+Shift+Escape exec termite -e htop
+    bindsym Ctrl+Shift+Escape exec $term -e htop
 # }}}
 
 # File Managers {{{
-    bindsym $win+a exec termite -e ranger
+    bindsym $win+a exec $term -e ranger
     bindsym $win+Shift+a exec thunar
 # }}}
 
@@ -706,6 +728,6 @@ exec xrdb -load ~/.Xresources
 
 # End
 
-# bindsym --whole-window button9+button1 exec termite
+# bindsym --whole-window button9+button1 exec $term
 
 # include /etc/sway/config.d/*

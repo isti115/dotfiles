@@ -121,7 +121,10 @@
 
 (map! :leader
       :desc "Write and quit (Save and close)" "f w q" #'evil-save-and-close
-      :desc "Copy whole file" "y" "myggyG`y") ;; Mark postition, yank and return
+      ;; :desc "Copy whole file" "y" "myggyG`y") ;; Mark postition, yank and return
+      :desc "Copy whole file (Wl)" "y" ":%y"
+      ;; :desc "Copy whole file (Wl)" "y" ":w !wl-copy")
+      :desc "Copy whole file (X)" "Y" ":w !xclip -sel clip")
 
 (custom-set-faces!
   '(proof-locked-face :background "#003300")
