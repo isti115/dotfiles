@@ -68,44 +68,38 @@ function extension-statistics {
   find . -type f | sed 's/.*\.//' | sort | uniq -c
 }
 
-function exec($cmd) {
-  [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-  [Microsoft.PowerShell.PSConsoleReadLine]::Insert($cmd)
-  [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-}
-
-function ranger-here {
-  ranger .
-}
-
-function fuzzy-history {
-  cat (Get-PSReadLineOption).HistorySavePath |
-    fzf --tac --no-sort --bind tab:toggle-sort --height "25%" |
-    Invoke-Expression
-}
+# function exec($cmd) {
+#   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+#   [Microsoft.PowerShell.PSConsoleReadLine]::Insert($cmd)
+#   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+# }
 
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Insert -ScriptBlock {
-  exec('ranger-here')
-  # exec('ranger .')
+  Start-Process -FilePath ranger -Wait
 }
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Command -ScriptBlock {
-  exec('ranger-here')
-  # exec('ranger .')
+  Start-Process -FilePath ranger -Wait
 }
 
-Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Insert -ScriptBlock {
-  exec('fuzzy-history')
-  # exec(
-  #   'cat (Get-PSReadLineOption).HistorySavePath | ' +
-  #   "`n" +
-  #   'fzf --tac --no-sort --height "25%" | Invoke-Expression'
-  # )
+$fzf_history = {
+  $history = Get-Content -Raw (Get-PSReadLineOption).HistorySavePath
+
+  $p = [System.Diagnostics.Process]@{StartInfo = @{
+    FileName = "fzf";
+    Arguments = "--tac --no-sort --bind tab:toggle-sort --height `"25%`"";
+    RedirectStandardInput = $true;
+    RedirectStandardOutput = $true;
+  }}
+
+  $p.Start()
+  $p.StandardInput.Write($history)
+  $p.StandardInput.Close()
+  $stdout = $p.StandardOutput.ReadToEnd()
+  $p.WaitForExit()
+
+  [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert($stdout.Trim())
 }
-Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Command -ScriptBlock {
-  exec('fuzzy-history')
-  # exec(
-  #   'cat (Get-PSReadLineOption).HistorySavePath | ' +
-  #   "`n" +
-  #   'fzf --tac --no-sort --height "25%" | Invoke-Expression'
-  # )
-}
+
+Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Insert -ScriptBlock $fzf_history
+Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Command -ScriptBlock $fzf_history

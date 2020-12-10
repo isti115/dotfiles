@@ -146,17 +146,6 @@ input type:keyboard {
     bindsym $win+$sft+Return exec $term -e "emacsclient --alternate-editor='' -t --create-frame $args"
     bindsym $win+$ctl+Return exec $term -e nvim; \
                              exec bash -c 'sleep 0.25; pkill --signal SIGWINCH nvim'
-    # bindsym KP_Insert resize grow width 10px
-    bindsym KP_Insert exec pkill --signal SIGWINCH nvim
-
-    # bindsym $win+$ctl+Return exec $term -e nvim; \
-    #                          exec "bash -c 'sleep 0.25; \
-    #                                         swaymsg resize grow   width  10px; \
-    #                                         swaymsg resize grow   height 10px; \
-    #                                         swaymsg resize shrink width  10px; \
-    #                                         swaymsg resize shrink height 10px'"
-
-    # bindsym --release $win+$ctl+Return resize grow width 1px
 
     # Kill focused window
     bindsym $win+Shift+q kill
@@ -728,6 +717,7 @@ exec xrdb -load ~/.Xresources
 
 # End
 
+bindsym KP_Insert nop # disable to avoid accidental presses
 # bindsym --whole-window button9+button1 exec $term
 
 # include /etc/sway/config.d/*
