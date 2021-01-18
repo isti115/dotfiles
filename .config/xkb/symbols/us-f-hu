@@ -1,0 +1,18 @@
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+
+  include "us(basic)"
+    
+  name[Group1]= "English (US, HU accents with F keys)";
+
+  override key <FK14> { [ odoubleacute , Odoubleacute ] };
+  override key <FK15> { [ oacute       , Oacute       ] };
+  override key <FK16> { [ uacute       , Uacute       ] };
+  override key <FK17> { [ udoubleacute , Udoubleacute ] };
+  override key <FK19> { [ odiaeresis   , Odiaeresis   ] };
+  override key <FK20> { [ eacute       , Eacute       ] };
+  override key <FK21> { [ aacute       , Aacute       ] };
+  override key <FK22> { [ udiaeresis   , Udiaeresis   ] };
+  override key <FK24> { [ iacute       , Iacute       ] };
+
+};
