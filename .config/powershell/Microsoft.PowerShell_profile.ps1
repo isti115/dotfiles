@@ -17,12 +17,14 @@ Set-PSReadlineKeyHandler -Key Ctrl+s -Function ForwardSearchHistory -ViMode Comm
 # Install-Module posh-git -Scope CurrentUser
 # Install-Module oh-my-posh -Scope CurrentUser
 # https://github.com/JanDeDobbeleer/oh-my-posh
+# Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 
 Import-Module posh-git
 Import-Module oh-my-posh
 
 # Set-Prompt
-Set-Theme AgnosterPlus
+# Set-Theme AgnosterPlus
+Set-PoshPrompt -Theme agnosterplus
 
 # $ENV:TERM = "xterm"
 # $ENV:EDITOR = "nvim"
