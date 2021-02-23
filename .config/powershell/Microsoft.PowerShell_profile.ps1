@@ -24,7 +24,9 @@ Import-Module oh-my-posh
 
 # Set-Prompt
 # Set-Theme AgnosterPlus
-Set-PoshPrompt -Theme agnosterplus
+# Set-Theme AgnosterPlusCustom
+# Set-PoshPrompt -Theme agnosterplus
+Set-PoshPrompt -Theme /home/isti/.config/powershell/PoshThemes/agnoster-plus-custom.omp.json
 
 # $ENV:TERM = "xterm"
 # $ENV:EDITOR = "nvim"
@@ -70,17 +72,17 @@ function extension-statistics {
   find . -type f | sed 's/.*\.//' | sort | uniq -c
 }
 
-# function exec($cmd) {
-#   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-#   [Microsoft.PowerShell.PSConsoleReadLine]::Insert($cmd)
-#   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-# }
+function exec($cmd) {
+  [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert($cmd)
+  [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
 
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Insert -ScriptBlock {
-  Start-Process -FilePath ranger -Wait
+  Start-Process -FilePath ranger -ArgumentList '.' -Wait
 }
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Command -ScriptBlock {
-  Start-Process -FilePath ranger -Wait
+  Start-Process -FilePath ranger -ArgumentList '.' -Wait
 }
 
 $fzf_history = {
@@ -105,3 +107,10 @@ $fzf_history = {
 
 Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Insert -ScriptBlock $fzf_history
 Set-PSReadlineKeyHandler -Chord Ctrl+f -ViMode Command -ScriptBlock $fzf_history
+
+$fzf_directory = {
+  exec("fd -t d | fzf | cd")
+}
+
+Set-PSReadlineKeyHandler -Chord Ctrl+g -ViMode Insert -ScriptBlock $fzf_directory
+Set-PSReadlineKeyHandler -Chord Ctrl+g -ViMode Command -ScriptBlock $fzf_directory

@@ -1,0 +1,106 @@
+{
+  "final_space": true,
+  "osc99": false,
+  "console_title": false,
+  "console_title_style": "",
+  "console_title_template": "",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "horizontal_offset": 0,
+      "vertical_offset": -1,
+      "segments": [
+        {
+          "type": "time",
+          "style": "plain",
+          "powerline_symbol": "",
+          "invert_powerline": false,
+          "foreground": "#007ACC",
+          "foreground_templates": null,
+          "background": "",
+          "background_templates": null,
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "properties": {
+            "time_format": "15:04:05"
+          }
+        }
+      ]
+    },
+    {
+      "type": "newline",
+      "alignment": "",
+      "horizontal_offset": 0,
+      "vertical_offset": 0,
+      "segments": null
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "horizontal_offset": 0,
+      "vertical_offset": 0,
+      "segments": [
+        {
+          "type": "envvar",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#ffffff",
+          "background": "#0077c2",
+          "properties": {
+            "var_name": "RANGER_LEVEL"
+          }
+        },
+        {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "invert_powerline": false,
+          "foreground": "#100e23",
+          "foreground_templates": null,
+          "background": "#ffffff",
+          "background_templates": null,
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "properties": null
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "invert_powerline": false,
+          "foreground": "#100e23",
+          "foreground_templates": null,
+          "background": "#91ddff",
+          "background_templates": null,
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "properties": {
+            "folder_icon": "",
+            "folder_separator_icon": "  ",
+            "home_icon": "",
+            "style": "agnoster",
+            "mapped_locations": [
+              ["/home/isti/programming", "\ue799"],
+              ["/home/isti/Documents", ""],
+              ["/home/isti/Documents/University/Materials/2020-2021-2/Functional_Languages/ELTE-func-lang", ""]
+            ]
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "invert_powerline": false,
+          "foreground": "#193549",
+          "foreground_templates": null,
+          "background": "#95ffa4",
+          "background_templates": null,
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "properties": null
+        }
+      ]
+    }
+  ]
+}
