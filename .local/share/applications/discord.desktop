@@ -1,11 +1,11 @@
 [Desktop Entry]
-Name=Discord
-StartupWMClass=discord
-Comment=All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.
-GenericName=Internet Messenger
-Exec=chromium --app="https://discord.com/login" --new-window
-Icon=discord
 Type=Application
+Name=Discord
+GenericName=Internet Messenger
+Comment=All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.
+Exec=chromium --app="https://discord.com/login" --new-window
+StartupWMClass=discord
+StartupNotify=true
+Icon=discord
 Categories=Network;InstantMessaging;
-Path=/usr/bin
 Path=/usr/bin
