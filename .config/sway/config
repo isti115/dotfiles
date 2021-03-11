@@ -648,7 +648,8 @@ bar {
 # }}}
 
 # Emoji {{{
-    bindsym $win+period exec "splatmoji copy"
+    # bindsym $win+period exec "splatmoji copy"
+    bindsym $win+period exec $util/wofi-emoji.sh
 # }}}
 
 # Task Managers {{{
