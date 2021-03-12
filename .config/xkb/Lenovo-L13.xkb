@@ -1,0 +1,166 @@
+xkb_keymap {
+    <Escape> = 9;
+    <Home> = 110;
+    <End> = 115;
+    <Delete> = 119;
+
+    <Grave> = 49;
+    <1> = 10; <2> = 11; <3> = 12; <4> = 13; <5> = 14; <6> = 15; <7> = 16; <8> = 17; <9> = 18; <0> = 19;
+
+    <Q> = 24; <W> = 25; <E> = 26; <R> = 27; <T> = 28; <Y> = 29; <U> = 30; <I> = 31; <O> = 32; <P> = 33;
+    <A> = 38; <S> = 39; <D> = 40; <F> = 41; <G> = 42; <H> = 43; <J> = 44; <K> = 45; <L> = 46;
+    <Z> = 52; <X> = 53; <C> = 54; <V> = 55; <B> = 56; <N> = 57; <M> = 58;
+
+    <Minus>       = 20; <Equal>        = 21; <BackSpace> = 22;
+    <BracketLeft> = 34; <BracketRight> = 35; <Backslash> = 51;
+    <SemiColon>   = 47; <Apostrophe>   = 48; <Return>    = 36;
+    <Comma>       = 59; <Period>       = 60; <Slash>     = 61;
+
+    <Tab> = 23;
+    <CapsLock> = 66;
+    <LeftShift> = 50;
+    <LeftControl> = 37;
+    <LeftWin> = 133;
+    <LeftAlt> = 64;
+    <Space> = 65;
+    <RightAlt> = 108;
+    <PrintScreen> = 107;
+    <RightControl> = 105;
+    <RightShift> = 62;
+
+    <Up> = 111;
+    <Left> = 113;
+    <Right> = 114;
+    <Down> = 116;
+
+    <PageUp> = 112;
+    <PageDown> = 117;
+
+    <Compose> = 136; // Used as extra key for evdoublebind
+  };
+
+  xkb_types {
+    type "Simple" {
+      modifiers = None;
+      map[None] = Level1;
+      level_name[Level1] = "Default";
+    };
+
+    type "Modifier" {
+      modifiers = None;
+      map[None] = Level1;
+      level_name[Level1] = "Default";
+    };
+
+    type "Custom" {
+      modifiers       = Shift+Mod3+Mod5+Lock;
+      map[None]       = Level1;
+      map[Shift]      = Level2;
+      map[Mod3]       = Level3;
+      map[Shift+Mod3] = Level4;
+      map[Mod5]       = Level5;
+      map[Shift+Mod5] = Level6;
+      map[Lock]       = Level7;
+      map[Shift+Lock] = Level7;
+      // preserve[Shift+Lock] = Shift;
+    };
+  };
+
+  xkb_compat {
+    interpret Any + Any {
+      action = SetMods(modifiers = modMapMods);
+    };
+
+    indicator "Caps Lock" {
+      whichModState = Locked;
+    };
+  };
+
+  xkb_symbols {
+    name[Group1] = "Lenovo L13";
+
+
+    // --- Simple keys ---
+    key.type = "Simple";
+
+    key <Tab>          { [ Escape    ] };
+    key <BracketLeft>  { [ BackSpace ] };
+    key <BracketRight> { [ Delete    ] };
+    key <CapsLock>     { [ Tab       ] };
+    key <Apostrophe>   { [ Return    ] };
+    key <Compose>      { [ space     ] };
+
+    key <PageUp>   { [ XF86MonBrightnessDown ] };
+    key <Up>       { [ XF86AudioPlay ] };
+    key <PageDown> { [ XF86MonBrightnessUp ] };
+
+    key <Left>     { [ XF86AudioLowerVolume ] };
+    key <Down>     { [ XF86AudioMute ] };
+    key <Right>    { [ XF86AudioRaiseVolume ] };
+
+
+    // --- Modifiers ---
+    key.type = "Modifier";
+
+    key <LeftShift>    { [ Shift_L    ] };
+    key <LeftControl>  { [ Control_L  ] };
+    key <LeftWin>      { [ Super_L    ] };
+    key <LeftAlt>      { [ Hyper_L    ] };
+    key <Space>        { [ Shift_Lock ] };
+    key <RightAlt>     { [ Meta_R     ] };
+    key <PrintScreen>  { [ Alt_R      ] };
+    key <RightControl> { [ Control_R  ] };
+    key <RightShift>   { [ Shift_R    ] };
+
+    modifier_map Control { <LeftControl>, <RightControl>, Control_L, Control_R };
+    modifier_map Lock    { <Space>                                             };
+    modifier_map Shift   { <LeftShift>,   <RightShift>,   Shift_L,   Shift_R   };
+    modifier_map Mod1    { <PrintScreen>,                 Alt_L,     Alt_R     };
+    // modifier_map Mod2 {                                                     };
+    modifier_map Mod3    { <RightAlt>,                    Meta_L,    Meta_R    };
+    modifier_map Mod4    { <LeftWin>,                     Super_L,   Super_R   };
+    modifier_map Mod5    { <LeftAlt>,                     Hyper_L,   Hyper_R   };
+
+
+    // --- Mixed (alphabet, symbols, extra functionality) ---
+    key.type = "Custom";
+
+    key <Q> {[ q, Q, F1,         F1                                            ]};
+    key <W> {[ w, W, F2,         F2                                            ]};
+    key <E> {[ e, E, F3,         F3                                            ]};
+    key <R> {[ r, R, F4,         F4                                            ]};
+    key <T> {[ t, T, F5,         F5                                            ]};
+    key <Y> {[ y, Y, F6,         F6                                            ]};
+    key <U> {[ u, U, F7,         F7,         odoubleacute, Odoubleacute, Home  ]};
+    key <I> {[ i, I, F8,         F8,         oacute,       Oacute,       Up    ]};
+    key <O> {[ o, O, F9,         F9,         uacute,       Uacute,       End   ]};
+    key <P> {[ p, P, F10,        F10,        udoubleacute, Udoubleacute        ]};
+
+    key <A> {[ a, A, 1,          exclam                                        ]};
+    key <S> {[ s, S, 2,          at                                            ]};
+    key <D> {[ d, D, 3,          numbersign                                    ]};
+    key <F> {[ f, F, 4,          dollar                                        ]};
+    key <G> {[ g, G, 5,          percent                                       ]};
+    key <H> {[ h, H, 6,          asciicircum                                   ]};
+    key <J> {[ j, J, 7,          ampersand,  odiaeresis,   Odiaeresis,   Left  ]};
+    key <K> {[ k, K, 8,          asterisk,   eacute,       Eacute,       Down  ]};
+    key <L> {[ l, L, 9,          parenleft,  aacute,       Aacute,       Right ]};
+
+    key <Z> {[ z, Z, grave,      asciitilde                                    ]};
+    key <X> {[ x, X, apostrophe, quotedbl                                      ]};
+    key <C> {[ c, C, minus,      underscore                                    ]};
+    key <V> {[ v, V, equal,      plus                                          ]};
+    key <B> {[ b, B, NoSymbol,   NoSymbol,   NoSymbol,     NoSymbol,     space ]};
+    key <N> {[ n, N, F11,        F11,        NoSymbol,     NoSymbol,     Prior ]};
+    key <M> {[ m, M, F12,        F12,        iacute,       Iacute,       Next  ]};
+
+    key <SemiColon> { [ semicolon, colon,    0, parenright, udiaeresis, Udiaeresis ] };
+    key <Comma>     { [ comma,     less,     bracketleft,  braceleft   ] };
+    key <Period>    { [ period,    greater,  bracketright, braceright  ] };
+    key <Slash>     { [ slash,     question, backslash,    bar         ] };
+
+    key <Delete>    { [ Print,  XF86Suspend ] };
+  };
+
+  xkb_geometry { };
+};

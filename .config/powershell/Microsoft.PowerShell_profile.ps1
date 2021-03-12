@@ -57,7 +57,11 @@ function aurinstall($name) {
 }
 
 function dotfiles {
-  git --git-dir=$home/.dotfiles/ --work-tree=$home $args
+  git --git-dir=$Env:HOME/.dotfiles/ --work-tree=$Env:HOME $args
+}
+
+function lazydotfiles {
+  lazygit --git-dir=$Env:HOME/.dotfiles/ --work-tree=$Env:HOME
 }
 
 function sw {

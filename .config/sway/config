@@ -12,10 +12,12 @@ font pango:FontAwesome 5 Free 10
 # Logo key. Use Mod1 for Alt.
 
 # Modifiers:
-set $win Mod4
-set $alt Mod1
 set $ctl Ctrl
 set $sft Shift
+set $alt Mod1
+set $met Mod3
+set $win Mod4
+set $hyp Mod5
 
 # Home row direction keys, like vim
 set $left  h
@@ -133,6 +135,17 @@ input type:keyboard {
 # }
 
 
+  # --- Lenovo L13 ---
+
+  input 1267:51:Elan_Touchpad {
+    tap enabled
+    natural_scroll enabled
+  }
+
+  input type:keyboard {
+    xkb_file ~/.config/xkb/Lenovo-L13.xkb
+  }
+
 ### Key bindings
 #
 # Basics:
@@ -249,126 +262,42 @@ input type:keyboard {
   workspace $ws7 output $laptop
   workspace $ws8 output $monitor
 
-  set $key1  XF86Explorer
-  set $key2  XF86Calculator
-  set $key3  XF86Search
-  set $key4  XF86Mail
-  set $key5  Cancel
-  set $key6  XF86Reload
-  set $key7  XF86Favorites
-  set $key8  XF86HomePage
-  set $key9  Hangul_Hanja
-  set $key10 Hangul
-  set $key11 XF86Open
-  set $key12 Help
-  set $key13 SunProps
-  set $key14 SunFront
-  set $key15 Find
-
   # Switch to workspace
-  bindsym $win+1 workspace 1
-  bindsym $win+2 workspace 2
-  bindsym $win+3 workspace 3
-  bindsym $win+4 workspace 4
-  bindsym $win+5 workspace 5
-  bindsym $win+6 workspace 6
-  bindsym $win+7 workspace 7
-  bindsym $win+8 workspace 8
-  bindsym $win+9 workspace 9
-  bindsym $win+0 workspace 10
-
-  bindsym $win+$alt+1 workspace 11
-  bindsym $win+$alt+2 workspace 12
-  bindsym $win+$alt+3 workspace 13
-  bindsym $win+$alt+4 workspace 14
-  bindsym $win+$alt+5 workspace 15
-  bindsym $win+$alt+6 workspace 16
-  bindsym $win+$alt+7 workspace 17
-  bindsym $win+$alt+8 workspace 18
-  bindsym $win+$alt+9 workspace 19
-  bindsym $win+$alt+0 workspace 20
-
-  bindsym $key1  workspace $ws1
-  bindsym $key2  workspace $ws2
-  bindsym $key3  workspace $ws3
-  bindsym $key4  workspace $ws4
-  bindsym $key5  workspace $ws5
-  bindsym $key6  workspace $ws6
-  bindsym $key7  workspace $ws7
-  bindsym $key8  workspace $ws8
-  bindsym $key9  workspace $ws9
-  bindsym $key10 workspace $ws10
-  bindsym $key11 workspace $ws11
-  bindsym $key12 workspace $ws12
-  bindsym $key13 workspace $ws13
-  bindsym $key14 workspace $ws14
-  bindsym $key15 workspace $ws15
-
-  bindsym $alt+$key1  workspace $ws11
-  bindsym $alt+$key2  workspace $ws12
-  bindsym $alt+$key3  workspace $ws13
-  bindsym $alt+$key4  workspace $ws14
-  bindsym $alt+$key5  workspace $ws15
-  bindsym $alt+$key6  workspace $ws16
-  bindsym $alt+$key7  workspace $ws17
-  bindsym $alt+$key8  workspace $ws18
-  bindsym $alt+$key9  workspace $ws19
-  bindsym $alt+$key10 workspace $ws20
+  bindsym $hyp+a workspace $ws1
+  bindsym $hyp+s workspace $ws2
+  bindsym $hyp+d workspace $ws3
+  bindsym $hyp+f workspace $ws4
+  bindsym $hyp+g workspace $ws5
+  bindsym $hyp+z workspace $ws6
+  bindsym $hyp+x workspace $ws7
+  bindsym $hyp+c workspace $ws8
+  bindsym $hyp+v workspace $ws9
+  bindsym $hyp+b workspace $ws10
+  bindsym $hyp+q workspace $ws11
+  bindsym $hyp+w workspace $ws12
+  bindsym $hyp+e workspace $ws13
+  bindsym $hyp+r workspace $ws14
+  bindsym $hyp+t workspace $ws15
 
   # Move focused container to workspace
-  bindsym $win+$sft+1 move container to workspace 1
-  bindsym $win+$sft+2 move container to workspace 2
-  bindsym $win+$sft+3 move container to workspace 3
-  bindsym $win+$sft+4 move container to workspace 4
-  bindsym $win+$sft+5 move container to workspace 5
-  bindsym $win+$sft+6 move container to workspace 6
-  bindsym $win+$sft+7 move container to workspace 7
-  bindsym $win+$sft+8 move container to workspace 8
-  bindsym $win+$sft+9 move container to workspace 9
-  bindsym $win+$sft+0 move container to workspace 10
-  bindsym $win+$alt+$sft+1 move container to workspace 11
-  bindsym $win+$alt+$sft+2 move container to workspace 12
-  bindsym $win+$alt+$sft+3 move container to workspace 13
-  bindsym $win+$alt+$sft+4 move container to workspace 14
-  bindsym $win+$alt+$sft+5 move container to workspace 15
-  bindsym $win+$alt+$sft+6 move container to workspace 16
-  bindsym $win+$alt+$sft+7 move container to workspace 17
-  bindsym $win+$alt+$sft+8 move container to workspace 18
-  bindsym $win+$alt+$sft+9 move container to workspace 19
-  bindsym $win+$alt+$sft+0 move container to workspace 20
+  bindsym $hyp+$sft+a move container to workspace $ws1
+  bindsym $hyp+$sft+s move container to workspace $ws2
+  bindsym $hyp+$sft+d move container to workspace $ws3
+  bindsym $hyp+$sft+f move container to workspace $ws4
+  bindsym $hyp+$sft+g move container to workspace $ws5
+  bindsym $hyp+$sft+z move container to workspace $ws6
+  bindsym $hyp+$sft+x move container to workspace $ws7
+  bindsym $hyp+$sft+c move container to workspace $ws8
+  bindsym $hyp+$sft+v move container to workspace $ws9
+  bindsym $hyp+$sft+b move container to workspace $ws10
+  bindsym $hyp+$sft+q move container to workspace $ws11
+  bindsym $hyp+$sft+w move container to workspace $ws12
+  bindsym $hyp+$sft+e move container to workspace $ws13
+  bindsym $hyp+$sft+r move container to workspace $ws14
+  bindsym $hyp+$sft+t move container to workspace $ws15
 
-  bindsym $sft+$key1  move container to workspace $ws1
-  bindsym $sft+$key2  move container to workspace $ws2
-  bindsym $sft+$key3  move container to workspace $ws3
-  bindsym $sft+$key4  move container to workspace $ws4
-  bindsym $sft+$key5  move container to workspace $ws5
-  bindsym $sft+$key6  move container to workspace $ws6
-  bindsym $sft+$key7  move container to workspace $ws7
-  bindsym $sft+$key8  move container to workspace $ws8
-  bindsym $sft+$key9  move container to workspace $ws9
-  bindsym $sft+$key10 move container to workspace $ws10
-  bindsym $sft+$key11 move container to workspace $ws11
-  bindsym $sft+$key12 move container to workspace $ws12
-  bindsym $sft+$key13 move container to workspace $ws13
-  bindsym $sft+$key14 move container to workspace $ws14
-  bindsym $sft+$key15 move container to workspace $ws15
+  bindsym $hyp+Tab workspace back_and_forth
 
-  bindsym $alt+$sft+$key1  move container to workspace $ws11
-  bindsym $alt+$sft+$key2  move container to workspace $ws12
-  bindsym $alt+$sft+$key3  move container to workspace $ws13
-  bindsym $alt+$sft+$key4  move container to workspace $ws14
-  bindsym $alt+$sft+$key5  move container to workspace $ws15
-  bindsym $alt+$sft+$key6  move container to workspace $ws16
-  bindsym $alt+$sft+$key7  move container to workspace $ws17
-  bindsym $alt+$sft+$key8  move container to workspace $ws18
-  bindsym $alt+$sft+$key9  move container to workspace $ws19
-  bindsym $alt+$sft+$key10 move container to workspace $ws20
-  # Note: workspaces can have any name you want, not just numbers.
-  # We just use 1-10 as the default.
-
-  bindsym XF86Tools workspace back_and_forth
-  bindsym Shift+XF86Tools workspace next
-  bindsym $win+Tab workspace back_and_forth
 #
 # Layout stuff:
 #
