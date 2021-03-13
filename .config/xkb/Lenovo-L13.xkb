@@ -1,4 +1,5 @@
 xkb_keymap {
+  xkb_keycodes {
     <Escape> = 9;
     <Home> = 110;
     <End> = 115;
@@ -36,7 +37,7 @@ xkb_keymap {
     <PageUp> = 112;
     <PageDown> = 117;
 
-    <Compose> = 136; // Used as extra key for evdoublebind
+    <Compose> = 135; // Used as extra key for evdoublebind
   };
 
   xkb_types {
@@ -113,7 +114,7 @@ xkb_keymap {
     key <RightShift>   { [ Shift_R    ] };
 
     modifier_map Control { <LeftControl>, <RightControl>, Control_L, Control_R };
-    modifier_map Lock    { <Space>                                             };
+    modifier_map Lock    { <Space>,                       Shift_Lock           };
     modifier_map Shift   { <LeftShift>,   <RightShift>,   Shift_L,   Shift_R   };
     modifier_map Mod1    { <PrintScreen>,                 Alt_L,     Alt_R     };
     // modifier_map Mod2 {                                                     };
@@ -134,7 +135,7 @@ xkb_keymap {
     key <U> {[ u, U, F7,         F7,         odoubleacute, Odoubleacute, Home  ]};
     key <I> {[ i, I, F8,         F8,         oacute,       Oacute,       Up    ]};
     key <O> {[ o, O, F9,         F9,         uacute,       Uacute,       End   ]};
-    key <P> {[ p, P, F10,        F10,        udoubleacute, Udoubleacute        ]};
+    key <P> {[ p, P, F10,        F10,        udoubleacute, Udoubleacute, Print ]};
 
     key <A> {[ a, A, 1,          exclam                                        ]};
     key <S> {[ s, S, 2,          at                                            ]};

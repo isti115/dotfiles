@@ -61,7 +61,12 @@ function dotfiles {
 }
 
 function lazydotfiles {
-  lazygit --git-dir=$Env:HOME/.dotfiles/ --work-tree=$Env:HOME
+  lazygit --git-dir=$Env:HOME/.dotfiles --work-tree=$Env:HOME
+}
+
+function dotfilesenv {
+  $Env:GIT_DIR="$Env:HOME/.dotfiles"
+  $Env:GIT_WORK_TREE="$Env:HOME"
 }
 
 function sw {

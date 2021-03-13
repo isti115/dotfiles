@@ -1,0 +1,248 @@
+xkb_keymap {
+  xkb_keycodes {
+    <Escape> = 9;
+
+    <F1>  = 232;
+    <F2>  = 233;
+    <F3>  = 128;
+    <F4>  = 212;
+    <F5>  = 237;
+    <F6>  = 238;
+    <F7>  = 173;
+    <F8>  = 172;
+    <F9>  = 171;
+    <F10> = 121;
+    <F11> = 122;
+    <F12> = 123;
+    <F13> = 191;
+    <F14> = 192;
+    <F15> = 193;
+    <F16> = 194;
+    <F17> = 195;
+    <F18> = 196;
+    <F19> = 197;
+
+    <FnF1>  = 67;
+    <FnF2>  = 68;
+    <FnF3>  = 69;
+    <FnF4>  = 70;
+    <FnF5>  = 71;
+    <FnF6>  = 72;
+    <FnF7>  = 73;
+    <FnF8>  = 74;
+    <FnF9>  = 75;
+    <FnF10> = 76;
+    <FnF11> = 95;
+    <FnF12> = 96;
+    // <FnF13> = 191;
+    // <FnF14> = 192;
+    // <FnF15> = 193;
+    // <FnF16> = 194;
+    // <FnF17> = 195;
+    // <FnF18> = 196;
+    // <FnF19> = 197;
+
+    <Grave> = 49;
+    <BelowEsc> = 94;
+    <Eject> = 170;
+    <Delete> = 119;
+    <Compose> = 135;
+
+    <1> = 10; <2> = 11; <3> = 12; <4> = 13; <5> = 14; <6> = 15; <7> = 16; <8> = 17; <9> = 18; <0> = 19;
+
+    <Q> = 24; <W> = 25; <E> = 26; <R> = 27; <T> = 28; <Y> = 29; <U> = 30; <I> = 31; <O> = 32; <P> = 33;
+    <A> = 38; <S> = 39; <D> = 40; <F> = 41; <G> = 42; <H> = 43; <J> = 44; <K> = 45; <L> = 46;
+    <Z> = 52; <X> = 53; <C> = 54; <V> = 55; <B> = 56; <N> = 57; <M> = 58;
+
+    <Minus> = 20; <Equal> = 21; <BackSpace> = 22;
+    <BracketLeft> = 34; <BracketRight> = 35; <Return> = 36;
+    <SemiColon> = 47; <Apostrophe> = 48; <Backslash> = 51;
+    <Comma> = 59; <Period> = 60; <Slash> = 61;
+
+    <Tab> = 23;
+    <CapsLock> = 66;
+    <LeftShift> = 50;
+    <LeftControl> = 37;
+    <LeftAlt> = 64;
+    <LeftCmd> = 133;
+    <Space> = 65;
+    <RightCmd> = 134;
+    <RightAlt> = 108;
+    <RightControl> = 105;
+    <RightShift> = 62;
+
+    // <Sajt> = 92;
+  };
+
+  xkb_types {
+    type "Modifier" {
+      modifiers = None;
+      map[None] = Level1;
+      level_name[Level1] = "Default";
+    };
+
+    type "Simple" {
+      modifiers = None;
+      map[None] = Level1;
+      level_name[Level1] = "Default";
+    };
+
+    type "Custom" {
+      modifiers = Shift+Mod3+Mod5+Lock;
+      map[None] = Level1;
+      map[Shift] = Level2;
+      map[Mod3] = Level3;
+      map[Shift+Mod3] = Level4;
+      map[Mod5] = Level5;
+      map[Shift+Mod5] = Level6;
+      map[Lock] = Level7;
+      map[Shift+Lock] = Level7;
+      // preserve[Shift+Lock] = Shift;
+    };
+  };
+
+  xkb_compat {
+    // interpret Alt_L {
+    //   action = LockMods(modifiers = Mod5);
+    // };
+
+    interpret Any + Any {
+      action = SetMods(modifiers = modMapMods);
+    };
+
+    // indicator "Caps Lock" {
+    //   whichModState = Locked;
+    //   modifiers = Shift;
+    // };
+  };
+
+  xkb_symbols {
+    name[Group1] = "Apple A1243";
+
+
+    key.type = "Custom";
+
+    key <F1>  { [ F1,  F1 ] };
+    key <F2>  { [ F2,  F2 ] };
+    key <F3>  { [ F3,  F3 ] };
+    key <F4>  { [ F4,  F4 ] };
+    key <F5>  { [ F5,  F5 ] };
+    key <F6>  { [ F6,  F6 ] };
+    key <F7>  { [ F7,  F7 ] };
+    key <F8>  { [ F8,  F8 ] };
+    key <F9>  { [ F9,  F9 ] };
+    key <F10> { [ F10, F10 ] };
+    key <F11> { [ F11, F11 ] };
+    key <F12> { [ F12, F12 ] };
+    key <F13> { [ F13, F13 ] };
+    key <F14> { [ F14, F14 ] };
+    key <F15> { [ F15, F15 ] };
+    key <F16> { [ F16, F16 ] };
+    key <F17> { [ F17, F17 ] };
+    key <F18> { [ F18, F18 ] };
+    key <F19> { [ F19, F19 ] };
+
+    key <1> { [ 1, exclam      ] };
+    key <2> { [ 2, at          ] };
+    key <3> { [ 3, numbersign  ] };
+    key <4> { [ 4, dollar      ] };
+    key <5> { [ 5, percent     ] };
+    key <6> { [ 6, asciicircum ] };
+    key <7> { [ 7, ampersand   ] };
+    key <8> { [ 8, asterisk    ] };
+    key <9> { [ 9, parenleft   ] };
+    key <0> { [ 0, parenright  ] };
+
+    key <Q> { [ q, Q, NoSymbol,     NoSymbol,     F1,  F1  ] };
+    key <W> { [ w, W, NoSymbol,     NoSymbol,     F2,  F2  ] };
+    key <E> { [ e, E, NoSymbol,     NoSymbol,     F3,  F3  ] };
+    key <R> { [ r, R, NoSymbol,     NoSymbol,     F4,  F4  ] };
+    key <T> { [ t, T, NoSymbol,     NoSymbol,     F5,  F5  ] };
+    key <Y> { [ y, Y, NoSymbol,     NoSymbol,     F6,  F6  ] };
+    key <U> { [ u, U, odoubleacute, Odoubleacute, F7,  F7  , Home ] };
+    key <I> { [ i, I, oacute,       Oacute,       F8,  F8  , Up ] };
+    key <O> { [ o, O, uacute,       Uacute,       F9,  F9  , End ] };
+    key <P> { [ p, P, udoubleacute, Udoubleacute, F10, F10 ] };
+
+    key <A> { [ a, A, NoSymbol,     NoSymbol,     1, exclam      ] };
+    key <S> { [ s, S, NoSymbol,     NoSymbol,     2, at          ] };
+    key <D> { [ d, D, NoSymbol,     NoSymbol,     3, numbersign  ] };
+    key <F> { [ f, F, NoSymbol,     NoSymbol,     4, dollar      ] };
+    key <G> { [ g, G, NoSymbol,     NoSymbol,     5, percent     ] };
+    key <H> { [ h, H, NoSymbol,     NoSymbol,     6, asciicircum ] };
+    key <J> { [ j, J, odiaeresis,   Odiaeresis,   7, ampersand  , Left ] };
+    key <K> { [ k, K, eacute,       Eacute,       8, asterisk   , Down ] };
+    key <L> { [ l, L, aacute,       Aacute,       9, parenleft  , Right ] };
+
+    key <Z> { [ z, Z, NoSymbol,     NoSymbol, grave, asciitilde ] };
+    key <X> { [ x, X, NoSymbol,     NoSymbol, apostrophe, quotedbl ] };
+    key <C> { [ c, C, NoSymbol,     NoSymbol, minus, underscore ] };
+    key <V> { [ v, V, NoSymbol,     NoSymbol, equal, plus ] };
+    key <B> { [ b, B, NoSymbol,     NoSymbol ] };
+    key <N> { [ n, N, NoSymbol,     NoSymbol, F11, F11 ] };
+    key <M> { [ m, M, iacute,       Iacute, F12, F12   ] };
+
+    key <SemiColon> { [ semicolon, colon, udiaeresis, Udiaeresis, 0, parenright ] };
+    key <Comma>     { [ comma,     less     , NoSymbol, NoSymbol, bracketleft, braceleft ] };
+    key <Period>    { [ period,    greater  , NoSymbol, NoSymbol, bracketright, braceright ] };
+    key <Slash>     { [ slash,     question , NoSymbol, NoSymbol, backslash, bar ] };
+
+
+    key.type = "Simple";
+    // key <Eject>     { [ Caps_Lock,     j     ] };
+    key <Compose>   { [ space ] };
+    key <BackSpace> { [ BackSpace ] };
+    key <Delete>    { [ Delete ] };
+    key <Return>    { [ Return    ] };
+    key <Apostrophe>    { [ Return    ] };
+    key <Escape>    { [ Escape    ] };
+    key <Tab>       { [ Escape    ] };
+    key <CapsLock>  { [ Tab       ] };
+    key <BracketLeft> { [ BackSpace ] };
+
+
+    // key <Sajt> { [ a, b, c, d, e, f, g ] };
+
+    // --- Modifiers ---
+    key.type = "Modifier";
+
+
+    key <LeftControl> { [ Control_L ] };
+    key <RightControl> { [ Control_R ] };
+
+    key <LeftShift> { [ Alt_L ] };
+    key <RightAlt> { [ Alt_R ] };
+
+    key <Grave> { [ Shift_L ] };
+    key <RightShift> { [ Shift_R ] };
+
+    key <LeftAlt> { [ Super_L ] };
+    key <LeftCmd> { [ Meta_L ] };
+    key <RightCmd> { [ Hyper_R ] };
+
+    key <Space>     { [ Caps_Lock ] };
+    // key <Compose> { [ Multi_key ] };
+
+    modifier_map Control { <LeftControl>, <RightControl> };
+    // modifier_map Control { Control_L, Control_R };
+    modifier_map Lock { <Space> };
+    // modifier_map Shift { <LeftShift>, <RightShift> };
+    modifier_map Shift { Shift_L, Shift_R };
+    modifier_map Mod1 { <RightAlt> };
+    // modifier_map Mod1 { Alt_L, Alt_R };
+    // modifier_map Mod2 { };
+    modifier_map Mod3 { <LeftCmd> };
+    // modifier_map Mod3 { Meta_L, Meta_R };
+    modifier_map Mod4 { <LeftAlt> };
+    // modifier_map Mod4 { Super_L, Super_R };
+    modifier_map Mod5 { <RightCmd> };
+    // modifier_map Mod5 { Hyper_L, Hyper_R };
+
+    // evdoublebind:
+    // replace key <Space> { [ Caps_Lock, Caps_Lock, Caps_Lock, Caps_Lock ] };
+    // replace key <F19> { [ space, space, space, space ] };
+    // modifier_map Mod3 { <Space> };
+  };
+
+  xkb_geometry { };
+};

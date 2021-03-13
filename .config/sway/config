@@ -93,10 +93,6 @@ bindsym $ctl+Menu exec feh --fullscreen ~/Pictures/black.png
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-input 1133:16489:Logitech_MX_Master_2S {
-  pointer_accel 0
-}
-
 input 2:14:ETPS/2_Elantech_Touchpad {
   tap enabled
   natural_scroll enabled
@@ -104,22 +100,17 @@ input 2:14:ETPS/2_Elantech_Touchpad {
 
 seat * hide_cursor 1500
 
-input type:keyboard {
+# input type:keyboard {
 # input * {
   # xkb_layout us
   # xkb_layout hu
   # xkb_variant 101_qwerty_dot_nodead
   # xkb_layout us-f-hu
   # xkb_file ~/.config/xkb/test/custom.xkb
-  xkb_file ~/.config/xkb/us-f-hu.xkb
+  # xkb_file ~/.config/xkb/us-f-hu.xkb
 
   # repeat_delay 1000
   # repeat_rate 10
-}
-
-# input "1241:659:USB-HID_Keyboard" {
-#   # xkb_layout us
-#   xkb_file ~/.config/xkb/us-f-hu.xkb
 # }
 
 # input "1241:659:USB-HID_Keyboard_Consumer_Control" {
@@ -134,6 +125,25 @@ input type:keyboard {
 #   xkb_file ~/.config/xkb/us-f-hu.xkb
 # }
 
+  # --- Logitech MX Master 2S ---
+  input 1133:16489:Logitech_MX_Master_2S {
+    pointer_accel 0
+  }
+
+  # --- Vortex Core ---
+  input "1241:659:USB-HID_Keyboard" {
+    # until layout isti_7.8
+    # xkb_file ~/.config/xkb/us-f-hu.xkb
+
+    # after layout isti_8.0
+    xkb_file ~/.config/xkb/Vortex-Core.xkb
+  }
+
+  # --- Apple A1243 ---
+  input "1452:592:Apple_Inc._Apple_Keyboard" {
+    xkb_file ~/.config/xkb/Apple-A1243.xkb
+  }
+
 
   # --- Lenovo L13 ---
 
@@ -142,7 +152,7 @@ input type:keyboard {
     natural_scroll enabled
   }
 
-  input type:keyboard {
+  input 1:1:AT_Translated_Set_2_keyboard {
     xkb_file ~/.config/xkb/Lenovo-L13.xkb
   }
 
@@ -248,11 +258,6 @@ input type:keyboard {
   set $ws13 13
   set $ws14 14
   set $ws15 15
-  set $ws16 16
-  set $ws17 17
-  set $ws18 18
-  set $ws19 19
-  set $ws20 20
 
   workspace $ws1 output $monitor
   workspace $ws2 output $laptop
