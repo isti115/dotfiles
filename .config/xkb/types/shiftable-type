@@ -1,0 +1,7 @@
+xkb_types {
+  type "Shiftable" {
+    modifiers  = Shift;
+    map[None]  = Level1;
+    map[Shift] = Level2;
+  };
+};

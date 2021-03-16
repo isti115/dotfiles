@@ -6,11 +6,8 @@ xkb_keymap {
     <Delete> = 119;
 
     <Grave> = 49;
-    <1> = 10; <2> = 11; <3> = 12; <4> = 13; <5> = 14; <6> = 15; <7> = 16; <8> = 17; <9> = 18; <0> = 19;
-
-    <Q> = 24; <W> = 25; <E> = 26; <R> = 27; <T> = 28; <Y> = 29; <U> = 30; <I> = 31; <O> = 32; <P> = 33;
-    <A> = 38; <S> = 39; <D> = 40; <F> = 41; <G> = 42; <H> = 43; <J> = 44; <K> = 45; <L> = 46;
-    <Z> = 52; <X> = 53; <C> = 54; <V> = 55; <B> = 56; <N> = 57; <M> = 58;
+    include "number-row"
+    include "alphabet-letters"
 
     <Minus>       = 20; <Equal>        = 21; <BackSpace> = 22;
     <BracketLeft> = 34; <BracketRight> = 35; <Backslash> = 51;
@@ -41,17 +38,9 @@ xkb_keymap {
   };
 
   xkb_types {
-    type "Simple" {
-      modifiers = None;
-      map[None] = Level1;
-      level_name[Level1] = "Default";
-    };
-
-    type "Modifier" {
-      modifiers = None;
-      map[None] = Level1;
-      level_name[Level1] = "Default";
-    };
+    include "modifier-type"
+    include "simple-type"
+    include "shiftable-type"
 
     type "Custom" {
       modifiers       = Shift+Mod3+Mod5+Lock;
@@ -68,9 +57,7 @@ xkb_keymap {
   };
 
   xkb_compat {
-    interpret Any + Any {
-      action = SetMods(modifiers = modMapMods);
-    };
+    include "forward-modifiers"
 
     indicator "Caps Lock" {
       whichModState = Locked;
@@ -79,6 +66,30 @@ xkb_keymap {
 
   xkb_symbols {
     name[Group1] = "Lenovo L13";
+
+    // --- Modifiers ---
+    key.type = "Modifier";
+
+    key <LeftShift>    { [ Shift_L    ] };
+    key <LeftControl>  { [ Control_L  ] };
+    key <LeftWin>      { [ Super_L    ] };
+    key <LeftAlt>      { [ Hyper_L    ] };
+    key <Space>        { [ Shift_Lock ] };
+    key <RightAlt>     { [ Meta_R     ] };
+    key <PrintScreen>  { [ Alt_R      ] };
+    key <RightControl> { [ Control_R  ] };
+    key <RightShift>   { [ Shift_R    ] };
+
+    modifier_map Control { <LeftControl>, <RightControl> };
+    modifier_map Lock    { <Space>                       };
+    modifier_map Shift   { <LeftShift>,   <RightShift>   };
+    modifier_map Mod1    { <PrintScreen>                 };
+    // modifier_map Mod2 {                               };
+    modifier_map Mod3    { <RightAlt>                    };
+    modifier_map Mod4    { <LeftWin>                     };
+    modifier_map Mod5    { <LeftAlt>                     };
+
+    include "modifier-symbols"
 
 
     // --- Simple keys ---
@@ -98,29 +109,6 @@ xkb_keymap {
     key <Left>     { [ XF86AudioLowerVolume ] };
     key <Down>     { [ XF86AudioMute ] };
     key <Right>    { [ XF86AudioRaiseVolume ] };
-
-
-    // --- Modifiers ---
-    key.type = "Modifier";
-
-    key <LeftShift>    { [ Shift_L    ] };
-    key <LeftControl>  { [ Control_L  ] };
-    key <LeftWin>      { [ Super_L    ] };
-    key <LeftAlt>      { [ Hyper_L    ] };
-    key <Space>        { [ Shift_Lock ] };
-    key <RightAlt>     { [ Meta_R     ] };
-    key <PrintScreen>  { [ Alt_R      ] };
-    key <RightControl> { [ Control_R  ] };
-    key <RightShift>   { [ Shift_R    ] };
-
-    modifier_map Control { <LeftControl>, <RightControl>, Control_L, Control_R };
-    modifier_map Lock    { <Space>,                       Shift_Lock           };
-    modifier_map Shift   { <LeftShift>,   <RightShift>,   Shift_L,   Shift_R   };
-    modifier_map Mod1    { <PrintScreen>,                 Alt_L,     Alt_R     };
-    // modifier_map Mod2 {                                                     };
-    modifier_map Mod3    { <RightAlt>,                    Meta_L,    Meta_R    };
-    modifier_map Mod4    { <LeftWin>,                     Super_L,   Super_R   };
-    modifier_map Mod5    { <LeftAlt>,                     Hyper_L,   Hyper_R   };
 
 
     // --- Mixed (alphabet, symbols, extra functionality) ---

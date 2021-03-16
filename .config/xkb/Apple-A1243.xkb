@@ -42,6 +42,8 @@ xkb_keymap {
     // <FnF18> = 196;
     // <FnF19> = 197;
 
+    // <IIFN> = 472;
+
     <Grave> = 49;
     <BelowEsc> = 94;
     <Eject> = 170;

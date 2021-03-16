@@ -1,0 +1,6 @@
+xkb_types {
+  type "Modifier" {
+    modifiers = None;
+    map[None] = Level1;
+  };
+};

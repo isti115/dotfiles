@@ -1,0 +1,32 @@
+xkb_symbols {
+  key.type = "Shiftable";
+
+  key <Q> {[ q, Q ]};
+  key <W> {[ w, W ]};
+  key <E> {[ e, E ]};
+  key <R> {[ r, R ]};
+  key <T> {[ t, T ]};
+  key <Y> {[ y, Y ]};
+  key <U> {[ u, U ]};
+  key <I> {[ i, I ]};
+  key <O> {[ o, O ]};
+  key <P> {[ p, P ]};
+
+  key <A> {[ a, A ]};
+  key <S> {[ s, S ]};
+  key <D> {[ d, D ]};
+  key <F> {[ f, F ]};
+  key <G> {[ g, G ]};
+  key <H> {[ h, H ]};
+  key <J> {[ j, J ]};
+  key <K> {[ k, K ]};
+  key <L> {[ l, L ]};
+
+  key <Z> {[ z, Z ]};
+  key <X> {[ x, X ]};
+  key <C> {[ c, C ]};
+  key <V> {[ v, V ]};
+  key <B> {[ b, B ]};
+  key <N> {[ n, N ]};
+  key <M> {[ m, M ]};
+};

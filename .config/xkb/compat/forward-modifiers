@@ -1,0 +1,5 @@
+xkb_compat {
+  interpret Any + Any {
+    action = SetMods(modifiers = modMapMods);
+  };
+};

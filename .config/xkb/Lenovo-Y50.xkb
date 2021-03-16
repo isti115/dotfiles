@@ -1,0 +1,8 @@
+xkb_keymap {
+	xkb_keycodes { include "Lenovo-Y50" };
+	xkb_types    { include "Lenovo-Y50" };
+	xkb_compat   { include "Lenovo-Y50" };
+	xkb_symbols  { include "Lenovo-Y50" };
+	xkb_geometry { include "Lenovo-Y50" };
+	// xkb_rules { include "Lenovo-Y50" };
+};

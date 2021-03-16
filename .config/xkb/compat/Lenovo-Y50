@@ -1,0 +1,7 @@
+xkb_compat {
+  include "forward-modifiers"
+
+  indicator "Caps Lock" {
+    whichModState = Locked;
+  };
+};

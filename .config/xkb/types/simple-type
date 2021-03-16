@@ -1,0 +1,7 @@
+xkb_types {
+  type "Simple" {
+    modifiers = None;
+    map[None] = Level1;
+    level_name[Level1] = "Default";
+  };
+};

@@ -1,0 +1,42 @@
+xkb_keycodes {
+  <Escape> = 9;
+
+  include "function-row"
+
+  <PrintScreen> = 107;
+  <Insert>      = 118;
+  <Delete>      = 119;
+  <Home>        = 110;
+  <End>         = 115;
+  <PageUp>      = 112;
+  <PageDown>    = 117;
+
+  <Grave> = 49;
+
+  include "number-row"
+  include "alphabet-letters"
+
+  <Minus>       = 20; <Equal>        = 21; <BackSpace> = 22;
+  <BracketLeft> = 34; <BracketRight> = 35; <Backslash> = 51;
+  <SemiColon>   = 47; <Apostrophe>   = 48; <Return>    = 36;
+  <Comma>       = 59; <Period>       = 60; <Slash>     = 61;
+
+  <Tab>          = 23;
+  <CapsLock>     = 66;
+  <LeftShift>    = 50;
+  <LeftControl>  = 37;
+  <LeftWin>      = 133;
+  <LeftAlt>      = 64;
+  <Space>        = 65;
+  <RightAlt>     = 108;
+  <Compose>      = 135;
+  <RightControl> = 105;
+  <RightShift>   = 62;
+
+  <Up>    = 111;
+  <Left>  = 113;
+  <Right> = 114;
+  <Down>  = 116;
+
+  import "number-pad"
+};

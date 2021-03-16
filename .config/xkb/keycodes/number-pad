@@ -1,0 +1,22 @@
+xkb_keycodes {
+  <NumLock>   = 77;
+
+  <NumDivide> = 106;
+  <NumTimes>  = 63;
+  <NumMinus>  = 82;
+  <NumPlus>   = 86;
+
+  <Num0> = 90;
+  <Num1> = 87;
+  <Num2> = 88;
+  <Num3> = 89;
+  <Num4> = 83;
+  <Num5> = 84;
+  <Num6> = 85;
+  <Num7> = 79;
+  <Num8> = 80;
+  <Num9> = 81;
+
+  <NumDot>    = 91;
+  <NumReturn> = 104;
+};

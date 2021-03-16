@@ -1,0 +1,14 @@
+xkb_symbols {
+  key.type = "Shiftable";
+
+  key <1> { [ 1, exclam      ] };
+  key <2> { [ 2, at          ] };
+  key <3> { [ 3, numbersign  ] };
+  key <4> { [ 4, dollar      ] };
+  key <5> { [ 5, percent     ] };
+  key <6> { [ 6, asciicircum ] };
+  key <7> { [ 7, ampersand   ] };
+  key <8> { [ 8, asterisk    ] };
+  key <9> { [ 9, parenleft   ] };
+  key <0> { [ 0, parenright  ] };
+};
