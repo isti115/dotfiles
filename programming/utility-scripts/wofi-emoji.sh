@@ -73,10 +73,12 @@ function download() {
 }
 
 function wofi_menu() { # {{{
-  wofi -width 25 -lines 7 -dmenu -i -p 'emoji: ' \
-    -kb-row-tab '' \
-    -kb-row-select Tab \
-    -kb-custom-1 Ctrl+c
+  # wofi -width 25 -lines 7 -dmenu -i -p 'emoji: ' \
+  #   -kb-row-tab '' \
+  #   -kb-row-select Tab \
+  #   -kb-custom-1 Ctrl+c
+  wofi --show='dmenu' --insensitive --prompt='emoji: '
+  # wofi --dmenu -i -p 'emoji: '
 }
 # }}}
 

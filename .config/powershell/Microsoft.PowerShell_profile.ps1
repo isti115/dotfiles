@@ -10,22 +10,20 @@ Set-PSReadlineKeyHandler -Key Ctrl+s -Function ForwardSearchHistory -ViMode Comm
 
 # Set-PSReadlineKeyHandler -Key Ctrl+LeftArrow -Function ReverseSearchHistory -ViMode Command
 
-# Currently not in use:
-# Install-Module -Name PSFzf -Scope CurrentUser
-#
-# Active:
-# Install-Module posh-git -Scope CurrentUser
-# Install-Module oh-my-posh -Scope CurrentUser
-# https://github.com/JanDeDobbeleer/oh-my-posh
-# Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+function install-modules {
+  # Install-Module -Name PSFzf -Scope CurrentUser
+  Install-Module posh-git -Scope CurrentUser
+  Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+}
+
+function install-plug {
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+}
 
 Import-Module posh-git
 Import-Module oh-my-posh
 
-# Set-Prompt
-# Set-Theme AgnosterPlus
-# Set-Theme AgnosterPlusCustom
-# Set-PoshPrompt -Theme agnosterplus
 Set-PoshPrompt -Theme /home/isti/.config/powershell/PoshThemes/agnoster-plus-custom.omp.json
 
 # $ENV:TERM = "xterm"
@@ -81,6 +79,11 @@ function extension-statistics {
   find . -type f | sed 's/.*\.//' | sort | uniq -c
 }
 
+function redate-commit($delta) {
+  $Env:GIT_COMMITTER_DATE="$(date -d $delta -R)"
+  git commit --amend --date $(date -d $delta -R)
+}
+
 function exec($cmd) {
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert($cmd)
@@ -88,10 +91,12 @@ function exec($cmd) {
 }
 
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Insert -ScriptBlock {
-  Start-Process -FilePath ranger -ArgumentList '.' -Wait
+  # Start-Process -FilePath ranger -ArgumentList '.' -Wait
+  exec('ranger .')
 }
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Command -ScriptBlock {
-  Start-Process -FilePath ranger -ArgumentList '.' -Wait
+  # Start-Process -FilePath ranger -ArgumentList '.' -Wait
+  exec('ranger .')
 }
 
 $fzf_history = {
