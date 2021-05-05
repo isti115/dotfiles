@@ -3,11 +3,11 @@
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     // "output": ["eDP-1"],
-    "output": ["eDP-1", "HDMI-A-1"],
+    "output": ["HDMI-A-1","DP-1","DP-2"],
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/media", "custom/weather"],
     "modules-center": ["sway/window"],
     // "mpd"
     "modules-right": ["idle_inhibitor", "pulseaudio", "network", "memory", "cpu", "custom/frequency", "temperature", "backlight", "battery", "battery#bat2", "clock", "tray"],
@@ -70,7 +70,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d | %H:%M}",
+        "format": "{:%Y-%m-%d | %H:%M}",
+        "format-alt": "{:%Y-%B-%d (%A) | %H:%M}",
         "on-click-right": "firefox-developer-edition -ssb \"calendar.google.com\""
     },
     "cpu": {
@@ -115,8 +116,8 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ", // 
+        "format-linked": "{ifname} (No IP) ", // 
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
@@ -149,13 +150,21 @@
             "default": "🎜"
         },
         "escape": true,
-        "exec": "$HOME/programming/utility-scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+        "exec": "~/.config/waybar/modules/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/frequency": {
         "format": "{} GHz ",
         "interval": 5,
         "exec": "lscpu | perl -ne 'if(/CPU MHz:\\s+(.*)/){printf(q(%.2f), $1/1000)}'"
+    },
+    "custom/weather": {
+        "format": "{}",
+        "format-alt": "{alt}: {}",
+        "format-alt-click": "click-right",
+        "interval": 220,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/weather.sh"
     },
 },
 {
@@ -168,7 +177,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d | %H:%M}",
+        "format": "{:%Y-%m-%d | %H:%M}",
+        "format-alt": "{:%Y-%B-%d (%A) | %H:%M}",
         "on-click-right": "firefox-developer-edition -ssb \"calendar.google.com\""
     },
     "cpu": {

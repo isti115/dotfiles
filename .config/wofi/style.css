@@ -1,20 +1,48 @@
+* { outline-style: none; }
+
 #window {
   font-family: "Source Code Pro";
+  border-radius: 10px;
+  color: white;
 }
 
 #outer-box {
-    padding: 5px;
+  padding: 5px;
+  background-color: #5b582d;
+  border-radius: 10px;
+}
+
+#input:focus {
+  /* border: 10px solid black; */
+  outline-width: 0;
+  /* outline-width: 10px; */
+  /* border: none; */
+  /* outline: none; */
 }
 
 #input {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
+  background-color: #f3f0b9;
+  outline: none;
 }
 
+/* #entry { } */
+
 #entry:nth-child(2n) {
-    background-color: lightgray;
-    /* border: 3px solid gray; */
+  background-color: #1d2021; /* #697310; */
+  /* border: 3px solid gray; */
+}
+
+#entry:nth-child(2n+1) {
+  background-color: #3c3836; /* #5b582d; */
+  /* border: 3px solid gray; */
 }
 
 #entry:selected {
-    background-color: green;
+  /* background-color: green; */
+  background-color: #8ec07c; /* #c4ca66; */
+}
+
+#text:selected {
+  color: black;
 }
