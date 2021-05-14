@@ -26,7 +26,7 @@ set $up    k
 set $right l
 
 # Paths
-set $util ~/programming/utility-scripts
+# set $util ~/programming/utility-scripts
 
 # Outputs
 set $dell           DP-1
@@ -184,7 +184,7 @@ seat * hide_cursor 1500
     bindsym $win+d exec wofi --show drun --allow-images
     bindsym $win+Shift+d exec wofi --show run
 
-    bindsym $win+q exec $util/quick-commands.sh
+    bindsym $win+q exec quick-commands.sh
 
     # Drag floating windows by holding down $win and left mouse button.
     # Resize them with right mouse button + $win.
@@ -529,12 +529,12 @@ bar {
     #         exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi; \
     #         exec pacmd set-default-sink $hdmi
 
-    bindsym $sft+XF86AudioLowerVolume \
-            exec ~/programming/utility-scripts/move-sink-inputs.pl $jack; \
-            exec pacmd set-default-sink $jack
-    bindsym $sft+XF86AudioRaiseVolume \
-            exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi; \
-            exec pacmd set-default-sink $hdmi
+    # bindsym $sft+XF86AudioLowerVolume \
+    #         exec ~/programming/utility-scripts/move-sink-inputs.pl $jack; \
+    #         exec pacmd set-default-sink $jack
+    # bindsym $sft+XF86AudioRaiseVolume \
+    #         exec ~/programming/utility-scripts/move-sink-inputs.pl $hdmi; \
+    #         exec pacmd set-default-sink $hdmi
 # }}}
 
 # Backlight {{{
@@ -584,12 +584,12 @@ bar {
     bindsym $alt+Print      exec grimshot save win
     bindsym $ctl+$alt+Print exec grimshot copy win
 
-    bindsym $win+Print      exec $util/swappy-area.sh
+    bindsym $win+Print      exec swappy-area.sh
 # }}}
 
 # Emoji {{{
     # bindsym $win+period exec "splatmoji copy"
-    bindsym $win+period exec $util/wofi-emoji.sh
+    bindsym $win+period exec wofi-emoji.sh
 # }}}
 
 # Task Managers {{{

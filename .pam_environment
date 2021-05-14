@@ -1,5 +1,4 @@
-EDITOR=nvim
-VISUAL=nvim
+# Deprecated:
+# https://github.com/linux-pam/linux-pam/commit/ecd526743a27157c5210b0ce9867c43a2fa27784
 
-MOZ_ENABLE_WAYLAND=1
-MOZ_USE_XINPUT2=1
+# See ~/.profile for environmental variables!
