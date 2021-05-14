@@ -14,6 +14,7 @@ font pango:FontAwesome 5 Free 10
 # Modifiers:
 set $ctl Ctrl
 set $sft Shift
+set $lck Lock
 set $alt Mod1
 set $met Mod3
 set $win Mod4
@@ -29,14 +30,15 @@ set $right l
 # set $util ~/programming/utility-scripts
 
 # Outputs
-set $dell           DP-1
-set $samsungOld     DP-2
+set $dell           DP-2
+set $samsungOld     DP-1
 set $samsungNew     HDMI-A-1
 set $fujitsuSiemens HEADLESS-1
 
 # Your preferred terminal emulator
 # set $term termite
 set $term alacritty
+set $browser qutebrowser
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -49,6 +51,8 @@ set $term alacritty
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg ~/Pictures/Wallpapers/swaying_tree_to_right.png fill
 output $fujitsuSiemens bg ~/Pictures/Wallpapers/swaying_tree_to_right_vertical_notree.png fill
+# output * bg ~/Pictures/Wallpapers/Zanchetta1.jpg fill
+# output * bg ~/Pictures/Wallpapers/Entry_24349_Dayong_Chen.jpg fill
 #
 # Example configuration:
 #
@@ -171,7 +175,8 @@ seat * hide_cursor 1500
 
     # Start an editor
     # bindsym $win+$sft+Return exec $term -e "pwsh -c ec"
-    bindsym $win+$sft+Return exec $term -e "emacsclient --alternate-editor='' -t --create-frame $args"
+    # bindsym $win+$sft+Return exec $term -e "emacsclient --alternate-editor='' -t --create-frame $args"
+    bindsym $win+$sft+Return exec $browser
     bindsym $win+$ctl+Return exec $term -e nvim; \
                              exec bash -c 'sleep 0.25; pkill --signal SIGWINCH nvim'
 
@@ -213,17 +218,16 @@ seat * hide_cursor 1500
     # bindsym $win+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $win+Shift+$left  move left
-    bindsym $win+Shift+$down  move down
-    bindsym $win+Shift+$up    move up
-    bindsym $win+Shift+$right move right
+    bindsym $win+$sft+$left  move left
+    bindsym $win+$sft+$down  move down
+    bindsym $win+$sft+$up    move up
+    bindsym $win+$sft+$right move right
     # Ditto, with arrow keys
     # bindsym $win+Shift+Left  move left
     # bindsym $win+Shift+Down  move down
     # bindsym $win+Shift+Up    move up
     # bindsym $win+Shift+Right move right
 
-    # Move the focused window with the same, but add Shift
     bindsym $win+$alt+$left  focus output left
     bindsym $win+$alt+$down  focus output down
     bindsym $win+$alt+$up    focus output up
@@ -235,15 +239,47 @@ seat * hide_cursor 1500
     # bindsym $win+$alt+Right focus output right
 
     # Move the focused window with the same, but add Shift
-    bindsym $win+Ctrl+$left  move workspace to output left
-    bindsym $win+Ctrl+$down  move workspace to output down
-    bindsym $win+Ctrl+$up    move workspace to output up
-    bindsym $win+Ctrl+$right move workspace to output right
+    bindsym $win+$ctl+$left  move workspace to output left
+    bindsym $win+$ctl+$down  move workspace to output down
+    bindsym $win+$ctl+$up    move workspace to output up
+    bindsym $win+$ctl+$right move workspace to output right
     # Ditto, with arrow keys
     # bindsym $win+Ctrl+Left  move workspace to output left
     # bindsym $win+Ctrl+Down  move workspace to output down
     # bindsym $win+Ctrl+Up    move workspace to output up
     # bindsym $win+Ctrl+Right move workspace to output right
+
+    bindsym $win+$ctl+$alt+$left  move container to output left
+    bindsym $win+$ctl+$alt+$down  move container to output down
+    bindsym $win+$ctl+$alt+$up    move container to output up
+    bindsym $win+$ctl+$alt+$right move container to output right
+
+    # Focus different screens
+    bindsym $hyp+$lck+a focus output $samsungNew
+    bindsym $hyp+$lck+s focus output $dell
+    bindsym $hyp+$lck+d focus output $fujitsuSiemens
+    bindsym $hyp+$lck+f focus output $samsungOld
+
+    bindsym $hyp+$lck+$sft+a move container to output $samsungNew
+    bindsym $hyp+$lck+$sft+s move container to output $dell
+    bindsym $hyp+$lck+$sft+d move container to output $fujitsuSiemens
+    bindsym $hyp+$lck+$sft+f move container to output $samsungOld
+
+    bindsym $hyp+$lck+$ctl+a move workspace to output $samsungNew
+    bindsym $hyp+$lck+$ctl+s move workspace to output $dell
+    bindsym $hyp+$lck+$ctl+d move workspace to output $fujitsuSiemens
+    bindsym $hyp+$lck+$ctl+f move workspace to output $samsungOld
+
+    # Blank screens
+    bindsym $hyp+$ctl+a output $samsungNew     dpms off
+    bindsym $hyp+$ctl+s output $dell           dpms off
+    bindsym $hyp+$ctl+d exec ssh lifebook-wifi "~/swaymsg-anywhere.sh 'workspace back_and_forth'"
+    bindsym $hyp+$ctl+f output $samsungOld     dpms off
+
+    bindsym $hyp+$alt+a output $samsungNew     dpms on
+    bindsym $hyp+$alt+s output $dell           dpms on
+    bindsym $hyp+$alt+d exec ssh lifebook-wifi "~/swaymsg-anywhere.sh 'workspace back_and_forth'"
+    bindsym $hyp+$alt+f output $samsungOld     dpms on
 #
 # Workspaces:
 #
@@ -264,30 +300,35 @@ seat * hide_cursor 1500
   set $ws14 14
   set $ws15 15
 
-  workspace $ws1 output $monitor
-  workspace $ws2 output $laptop
-  workspace $ws3 output $laptop
-  workspace $ws4 output $monitor
-  workspace $ws6 output $monitor
-  workspace $ws7 output $laptop
-  workspace $ws8 output $monitor
+  workspace $ws1  output $dell
+  workspace $ws2  output $dell
+  workspace $ws3  output $dell
+  workspace $ws4  output $dell
+  workspace $ws5  output $dell
+  workspace $ws6  output $samsungNew
+  workspace $ws7  output $samsungNew
+  workspace $ws8  output $samsungNew
+  workspace $ws9  output $fujitsuSiemens
+  workspace $ws10 output $fujitsuSiemens
+  workspace $ws14 output $samsungOld
+  workspace $ws15 output $samsungOld
 
   # Switch to workspace
-  bindsym $hyp+a workspace $ws1
-  bindsym $hyp+s workspace $ws2
-  bindsym $hyp+d workspace $ws3
-  bindsym $hyp+f workspace $ws4
-  bindsym $hyp+g workspace $ws5
-  bindsym $hyp+z workspace $ws6
-  bindsym $hyp+x workspace $ws7
-  bindsym $hyp+c workspace $ws8
-  bindsym $hyp+v workspace $ws9
-  bindsym $hyp+b workspace $ws10
-  bindsym $hyp+q workspace $ws11
-  bindsym $hyp+w workspace $ws12
-  bindsym $hyp+e workspace $ws13
-  bindsym $hyp+r workspace $ws14
-  bindsym $hyp+t workspace $ws15
+  bindsym $hyp+a workspace number $ws1
+  bindsym $hyp+s workspace number $ws2
+  bindsym $hyp+d workspace number $ws3
+  bindsym $hyp+f workspace number $ws4
+  bindsym $hyp+g workspace number $ws5
+  bindsym $hyp+z workspace number $ws6
+  bindsym $hyp+x workspace number $ws7
+  bindsym $hyp+c workspace number $ws8
+  bindsym $hyp+v workspace number $ws9
+  bindsym $hyp+b workspace number $ws10
+  bindsym $hyp+q workspace number $ws11
+  bindsym $hyp+w workspace number $ws12
+  bindsym $hyp+e workspace number $ws13
+  bindsym $hyp+r workspace number $ws14
+  bindsym $hyp+t workspace number $ws15
 
   # Move focused container to workspace
   bindsym $hyp+$sft+a move container to workspace $ws1
@@ -307,6 +348,8 @@ seat * hide_cursor 1500
   bindsym $hyp+$sft+t move container to workspace $ws15
 
   bindsym $hyp+Tab workspace back_and_forth
+
+  bindsym $win+$sft+r exec "wofi --dmenu | xargs swaymsg rename workspace to"
 
 #
 # Layout stuff:
@@ -328,6 +371,7 @@ seat * hide_cursor 1500
 
     # Toggle the current focus between tiling and floating mode
     bindsym $win+$sft+space floating toggle
+    bindsym $win+t sticky toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $win+$alt+space focus mode_toggle
@@ -616,7 +660,7 @@ bindsym $ctl+$win+$alt+space exec makoctl dismiss --all
 # Assignments
 
 # assign [class="vlc"] $ws2
-assign [class="discord"] $ws8
+# assign [title="discord.com_/login"] $ws8
 
 # === Firefox Windows === {{{
 
@@ -642,11 +686,33 @@ assign [class="discord"] $ws8
 
   # bindsym $win+$shift+c firefox-developer-edition -ssb "calendar.google.com"
 
-  for_window [title="calendar.google.com"] \
-    floating enable, \
-    resize set 1280 720, \
-    move position 640 350, \
-    opacity set 0.9
+# }}}
+
+# === Floating Windows === {{{
+
+for_window [title="zoom"]                          floating enable
+for_window [title="Breakout Rooms"]                floating enable
+for_window [title="New Text Note — Okular"]        floating enable
+for_window [title="Edit annotation tool — Okular"] floating enable
+for_window [title="Export Image as PNG"]           floating enable
+for_window [title=".* is sharing your screen."]    floating enable
+for_window [title="Firefox — Sharing Indicator"]   floating enable
+
+for_window [title="Firefox Developer Edition — Sharing Indicator"] \
+  floating enable, \
+  resize set width 20 ppt height 10 ppt
+
+for_window [title="calendar.google.com"] \
+  floating enable, \
+  resize set 1280 720, \
+  move position 640 350, \
+  opacity set 0.9
+
+for_window [title="File Operation Progress"] \
+  floating enable, \
+  border pixel 1, \
+  sticky enable, \
+  resize set width 40 ppt height 30 ppt
 
 # }}}
 
@@ -658,7 +724,7 @@ exec xrdb -load ~/.Xresources
 
 # End
 
-bindsym KP_Insert nop # disable to avoid accidental presses
+# bindsym KP_Insert nop # disable to avoid accidental presses
 # bindsym --whole-window button9+button1 exec $term
 
 # include /etc/sway/config.d/*
