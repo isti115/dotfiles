@@ -18,25 +18,26 @@ xkb_keymap {
     <Escape>      = 9;                     <BackSpace> = 22; <Delete> = 119;
     <Tab>         = 23;                                      <Return> =  36;
     <LeftShift>   = 50;                                  <RightShift> =  62;
-    <LeftControl> = 37;                                <RightControl> = 105;
-        <LeftAlt> = 64;                                <RightWin> = 134;
-            <LeftWin> = 133;                       <RightAlt> = 108;
-                <Pn> = 77; <LeftSpace> = 65; <RightSpace> = 135;
+    <LeftControl> = 64;                                <RightControl> = 105;
+        <LeftWin> = 37;                                <RightWin> = 134;
+           <LeftAlt> = 133;                       <RightAlt> = 108;
+                <Pn> = 77; <LeftSpace> = 65; <RightSpace> = 78;
 
     // --- Other (side, bottom) keys / Fn layer ---
-    <EscapeFn>      = 90;                  <BackSpaceFn> = 87; <DeleteFn> =  88;
-    <TabFn>         = 66;                                      <ReturnFn> = 104;
-    <LeftShiftFn>   = 89;                                  <RightShiftFn> =  84;
-    <LeftControlFn> = 85;                              <RightControlFn> = 86;
-        <LeftAltFn> = 79;                              <RightWinFn> = 91;
-            <LeftWinFn> = 80;                       <RightAltFn> = 82;
-              <PnFn> = 81; <LeftSpaceFn> = 106; <RightSpaceFn> = 63;
+    <EscapeFn>      = 118;                <BackSpaceFn> = 202; <DeleteFn> = 201;
+    <TabFn>         = 66;                                      <ReturnFn> = 200;
+    <LeftShiftFn>   = 191;                                 <RightShiftFn> = 199;
+    <LeftControlFn> = 192;                              <RightControlFn> = 198;
+        <LeftWinFn> = 193;                              <RightWinFn> = 197;
+            <LeftAltFn> = 194;                      <RightAltFn> = 196;
+            <PnFn> = 195; <LeftSpaceFn> = 127; // <RightSpaceFn> = ??;
   };
 
   xkb_types {
     include "modifier-type"
     include "simple-type"
     include "shiftable-type"
+    include "controllable-type"
 
     type "Custom" {
       modifiers       = Shift+Mod5+Lock;
@@ -63,27 +64,27 @@ xkb_keymap {
 
     key <LeftShift>   { [ Shift_L    ] };
     key <LeftControl> { [ Alt_L      ] };
-    key <LeftAlt>     { [ Control_L  ] };
-    key <LeftWin>     { [ Super_L    ] };
+    key <LeftAlt>     { [ Super_L    ] };
+    key <LeftWin>     { [ Control_L  ] };
     key <Pn>          { [ Hyper_L    ] };
     key <RightSpace>  { [ Shift_Lock ] };
     key <RightShift>  { [ Shift_R    ] };
 
     key <LeftShiftFn>   { [ Shift_L    ] };
     key <LeftControlFn> { [ Alt_L      ] };
-    key <LeftAltFn>     { [ Control_L  ] };
-    key <LeftWinFn>     { [ Super_L    ] };
+    key <LeftAltFn>     { [ Super_L    ] };
+    key <LeftWinFn>     { [ Control_L  ] };
     key <PnFn>          { [ Hyper_L    ] };
-    key <RightSpaceFn>  { [ Shift_Lock ] };
+    // key <RightSpaceFn>  { [ Shift_Lock ] };
     key <RightShiftFn>  { [ Shift_R    ] };
 
-    modifier_map Control { <LeftAlt>,                   <LeftAltFn>                     };
-    modifier_map Lock    { <RightSpace>,                <RightSpaceFn>                  };
+    modifier_map Control { <LeftWin>,                   <LeftWinFn>                     };
+    modifier_map Lock    { <RightSpace>                                                 }; // <RightSpaceFn>
     modifier_map Shift   { <LeftShift>,   <RightShift>, <LeftShiftFn>,   <RightShiftFn> };
     modifier_map Mod1    { <LeftControl>,               <LeftControlFn>                 };
     // modifier_map Mod2 {                                                              };
     // modifier_map Mod3 {                                                              };
-    modifier_map Mod4    { <LeftWin>,                   <LeftWinFn>                     };
+    modifier_map Mod4    { <LeftAlt>,                   <LeftAltFn>                     };
     modifier_map Mod5    { <Pn>,                        <PnFn>                          };
 
     include "modifier-symbols"
@@ -115,7 +116,6 @@ xkb_keymap {
     key <RightControlFn> { [ XF86MonBrightnessUp   ] };
 
     include "function-row"
-
 
     // --- Alphabet, numbers, symbols, movement ---
     key.type = "Custom";

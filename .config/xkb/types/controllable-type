@@ -1,0 +1,7 @@
+xkb_types {
+  type "Controllable" {
+    modifiers    = Control;
+    map[None]    = Level1;
+    map[Control] = Level2;
+  };
+};
