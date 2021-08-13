@@ -1,0 +1,20 @@
+cmd open-with &nohup $1 $f
+#map o push $<space>$f<left><left><left>
+map o push :open-with<space>
+
+map E !edir
+map R :rename; cmd-word-back; cmd-left
+map D %trash-put "$fx"
+
+map tf push $touch<space>
+map td push $mkdir<space>-p<space>
+
+map g/ cd /
+
+cmap <up> cmd-history-prev
+cmap <down> cmd-history-next
+
+cmd unzip !7z x -o$f.dir $f
+cmd zip !7z a $1 $fs
+map \\z unzip
+map \\Z push :zip<space>

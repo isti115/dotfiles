@@ -26,9 +26,11 @@ Import-Module oh-my-posh
 
 Set-PoshPrompt -Theme /home/isti/.config/powershell/PoshThemes/agnoster-plus-custom.omp.json
 
+$ENV:PATH += ":${ENV:HOME}/.local/bin"
 # $ENV:TERM = "xterm"
 # $ENV:EDITOR = "nvim"
 # $ENV:VISUAL = "nvim"
+$ENV:OPENER = "open.lua"
 # $SHELL = $ENV:SHELL
 
 $MaximumHistoryCount = 32767
@@ -91,12 +93,14 @@ function exec($cmd) {
 }
 
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Insert -ScriptBlock {
+  Start-Process -FilePath lf -Wait
   # Start-Process -FilePath ranger -ArgumentList '.' -Wait
-  exec('ranger .')
+  # exec('ranger .')
 }
 Set-PSReadlineKeyHandler -Key Ctrl+e -ViMode Command -ScriptBlock {
+  Start-Process -FilePath lf -Wait
   # Start-Process -FilePath ranger -ArgumentList '.' -Wait
-  exec('ranger .')
+  # exec('ranger .')
 }
 
 $fzf_history = {
