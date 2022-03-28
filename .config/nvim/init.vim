@@ -109,6 +109,8 @@
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
   Plug 'vim-airline/vim-airline'
+  Plug 'ptzz/lf.vim'
+  Plug 'voldikss/vim-floaterm'
   call plug#end()
 
   " nnoremap <Space>pc :PlugClean<Return>
@@ -124,6 +126,7 @@
   let g:fzf_layout = { 'down': '15%' }
   let g:fzf_preview_window = []
   let g:ranger_map_keys = 0
+  let g:lf_map_keys = 0
   let g:rooter_patterns = [ '.project', '.git' ]
   let g:which_key_disable_default_offset = 1
   let g:rbpt_colorpairs = [
@@ -230,6 +233,7 @@ nnoremap <Space>w <C-w>
   nnoremap <Space>ff :Rooter<Return>:Files<Return>
   nnoremap <Space>fh :History<Return>
   nnoremap <Space>fr :Ranger<Return>
+  nnoremap <Space>fl :Lf<Return>
   nnoremap <Space>fo :bro ol<Return>
   nnoremap <Space>fs :w<Return>
   nnoremap <Space>fC :save<Space>
@@ -262,6 +266,7 @@ nnoremap <Space>w <C-w>
   nnoremap <Space>fcqb :edit ~/.config/qutebrowser/config.py<Return>
   nnoremap <Space>fcqc :edit ~/programming/utility-scripts/quick-commands.sh<Return>
   nnoremap <Space>fcr :edit ~/.config/ranger/rc.conf<Return>
+  nnoremap <Space>fcl :edit ~/.config/lf/lfrc<Return>
   nnoremap <Space>fcs :edit ~/.config/sway/config<Return>
   nnoremap <Space>fcv :edit $MYVIMRC<Return>
 
@@ -316,6 +321,7 @@ nnoremap <Space>w <C-w>
 
 nmap <Space>e <Plug>(emmet-expand-abbr)
 nnoremap <Space>ot :sp term://pwsh<Return>
+nnoremap <Space>of :FloatermNew pwsh<Return>
 nnoremap <Space>og :vsp term://ghci<Return>
 nnoremap <Space>ow :set tw=80<Return>
 

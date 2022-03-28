@@ -30,7 +30,7 @@ $ENV:PATH += ":${ENV:HOME}/.local/bin"
 # $ENV:TERM = "xterm"
 # $ENV:EDITOR = "nvim"
 # $ENV:VISUAL = "nvim"
-$ENV:OPENER = "open.lua"
+$ENV:OPENER = "open.ts"
 # $SHELL = $ENV:SHELL
 
 $MaximumHistoryCount = 32767

@@ -1,4 +1,4 @@
-cmd open-with &nohup $1 $f
+cmd open-with &nohup $1 "$f"
 #map o push $<space>$f<left><left><left>
 map o push :open-with<space>
 
@@ -14,7 +14,7 @@ map g/ cd /
 cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
 
-cmd unzip !7z x -o$f.dir $f
+cmd unzip !7z x -o"$f.dir" "$f"
 cmd zip !7z a $1 $fs
 map \\z unzip
 map \\Z push :zip<space>

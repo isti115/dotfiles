@@ -1,9 +1,18 @@
 #!/usr/bin/env lua
 
-if string.match(arg[1], '.*.png$') then os.execute("vimiv " .. arg[1])
-elseif string.match(arg[1], '.*.jpg$') then os.execute("vimiv " .. arg[1])
-elseif string.match(arg[1], '.*.pdf$') then os.execute("zathura \"" .. arg[1] .. "\"")
-elseif string.match(arg[1], '.*.mp3$') then os.execute("mpv --force-window " .. arg[1])
-elseif string.match(arg[1], '.*.svg$') then os.execute("inkscape " .. arg[1])
-elseif string.match(arg[1], '.*.doc$') then os.execute("libreoffice " .. arg[1])
+associations = {
+  { filter = '.*.png$', command = "vimiv" },
+  { filter = '.*.jpg$', command = "vimiv" },
+  { filter = '.*.pdf$', command = "zathura" },
+  { filter = '.*.mp3$', command = "mpv --force-window" },
+  { filter = '.*.mp4$', command = "mpv --force-window" },
+  { filter = '.*.svg$', command = "inkscape" },
+  { filter = '.*.doc$', command = "libreoffice" }
+}
+
+for _, a in pairs(associations) do
+  if string.match(arg[1], a.filter) then
+    os.execute(a.command .. ' "' .. arg[1] .. '"')
+    break
+  end
 end
