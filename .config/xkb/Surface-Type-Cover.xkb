@@ -1,0 +1,47 @@
+xkb_keymap {
+  xkb_keycodes {
+    include "evdev+aliases(qwerty)"
+
+    <LALT> = 183; // Originally F13
+    <MOD3> = 64;  // Originally L_Alt
+  };
+
+  xkb_types {
+    include "complete"
+
+    type "Custom" {
+      modifiers       = Shift+Mod3;
+      map[None]       = Level1;
+      map[Shift]      = Level2;
+      map[Mod3]       = Level3;
+      map[Shift+Mod3] = Level4;
+    };
+  };
+
+  xkb_compat {
+    include "complete"
+  };
+
+  xkb_symbols {
+    include "pc+us+inet(evdev)"
+
+    key <MOD3> { [ Kanji ] };
+    modifier_map Mod3 { <MOD3> };
+
+    key.type = "Custom";
+
+    key <AD07> {[ u, U,             odoubleacute, Odoubleacute ]};
+    key <AD08> {[ i, I,             oacute,       Oacute       ]};
+    key <AD09> {[ o, O,             uacute,       Uacute       ]};
+    key <AD10> {[ p, P,             udoubleacute, Udoubleacute ]};
+    key <AC07> {[ j, J,             odiaeresis,   Odiaeresis   ]};
+    key <AC08> {[ k, K,             eacute,       Eacute       ]};
+    key <AC09> {[ l, L,             aacute,       Aacute       ]};
+    key <AC10> {[ semicolon, colon, udiaeresis,   Udiaeresis   ]};
+    key <AB07> {[ m, M,             iacute,       Iacute       ]};
+  };
+
+  xkb_geometry {
+    include "pc(pc105)"
+  };
+};
