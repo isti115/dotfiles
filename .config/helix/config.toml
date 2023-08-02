@@ -1,0 +1,28 @@
+# Language configuration at:
+# ~/.config/helix/languages.toml
+# (`gf` over the path to access)
+
+# theme = "monokai_pro"
+# theme = "tokyonight"
+theme = "onedark"
+
+[editor]
+color-modes = true
+rulers = [ 80 ]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal.space]
+c = ":config-open"
+C = ":config-reload"
+# z = { g = ":sh zelligit.sh", f = ":sh zellilf.sh" }
+
+[keys.normal.space.z]
+g = ":sh zellij action new-tab --layout lazygit"
+f = ":sh zellij action new-tab --layout lf"
+
+[keys.insert]
+j = { k = "normal_mode" } # Maps `jk` to exit insert mode
