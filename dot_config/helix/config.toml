@@ -1,0 +1,31 @@
+# Language configuration at: ./languages.toml (`gf` over the path to access)
+
+# theme = "monokai_pro"
+theme = "onedark"
+# theme = "tokyonight"
+
+[editor]
+color-modes = true
+cursorline = true
+rulers = [ 80 ]
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal.space]
+C = ":config-reload"
+c = ":config-open"
+
+[keys.normal.space.f]
+f = "file_picker"
+s = ":write"
+
+[keys.normal.space.q]
+a = ":quit-all"
+q = ":quit"
+
+[keys.insert]
+j = { k = "normal_mode" }
