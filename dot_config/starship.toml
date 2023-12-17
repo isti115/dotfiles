@@ -1,0 +1,12 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[env_var.LF]
+variable = 'LF_LEVEL'
+format = 'lf [ $env_value]($style) '
+style = 'bold blue'
+
+[env_var.ZELLIJ]
+variable = 'ZELLIJ_SESSION_NAME'
+format = 'zj [ $env_value]($style) '
+style = 'bold red'
