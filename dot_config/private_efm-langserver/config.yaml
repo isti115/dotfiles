@@ -1,0 +1,39 @@
+version: 2
+
+root-markers:
+  - .git/
+
+lint-debounce: 1s
+
+tools:
+  prettier: &prettier
+    format-command: >
+      prettier
+      --stdin-filepath ${INPUT}
+      ${--range-start:charStart}
+      ${--range-end:charEnd}
+      ${--tab-width:tabWidth}
+      ${--use-tabs:!insertSpaces}
+    format-stdin: true
+
+  xo: &xo
+    lint-after-open: true
+    lint-command: 'xo --reporter visualstudio --stdin-filename ${INPUT} --stdin'
+    lint-stdin: true
+    lint-formats:
+      - '%f(%l,%c): %tarning %m'
+      - '%f(%l,%c): %trror %m'
+
+languages:
+  javascript:
+    - <<: *prettier
+    - <<: *xo
+  javascriptreact:
+    - <<: *prettier
+    - <<: *xo
+  typescript:
+    - <<: *prettier
+    - <<: *xo
+  typescriptreact:
+    - <<: *prettier
+    - <<: *xo
