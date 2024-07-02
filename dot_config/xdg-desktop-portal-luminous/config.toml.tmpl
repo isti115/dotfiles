@@ -1,0 +1,8 @@
+# Accent colors based on an approximation of the green
+# Framework Laptop 13 bezel and its 60° hue rotations:
+{{ if eq .chezmoi.hostname "vela" -}}
+accent_color = "#408060"
+{{- else if eq .chezmoi.hostname "libra" -}}
+accent_color = "#406080"
+{{- end }}
+color_scheme = "dark"
