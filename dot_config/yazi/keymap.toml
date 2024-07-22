@@ -1,0 +1,36 @@
+[manager]
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "d" ]
+desc = "Drag selected items"
+run = '''
+	shell 'dragon -x -T "$@"' --confirm
+'''
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "e" ]
+desc = "Open in editor"
+run = '''
+	shell '$EDITOR "$@"' --block --confirm
+'''
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "i" ]
+desc = "Preview in pager"
+run = '''
+  shell "bat --paging=always $@" --block --confirm
+'''
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "s" ]
+desc = "Spawn shell here"
+run = '''
+  shell "$SHELL" --block --confirm
+'''
+
+[[manager.prepend_keymap]]
+on  = [ "\\", "z" ]
+desc = "Unpack archive"
+run = '''
+	shell '7z x -o"$0.dir" "$1"' --block --confirm
+'''
