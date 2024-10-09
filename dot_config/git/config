@@ -1,0 +1,15 @@
+[user]
+  name = István Donkó
+  email = istvan.donko@gmail.com
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
+[diff]
+  colorMoved = zebra
+
+[format]
+  pretty = fuller
+
+[push]
+  default = upstream
