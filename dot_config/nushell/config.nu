@@ -12,3 +12,5 @@ $env.config = {
     isolation: true
   }
 }
+
+source ~/.config/nushell/user.nu
