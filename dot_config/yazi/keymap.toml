@@ -1,36 +1,91 @@
 [manager]
 
+# --- INTERNAL ---
+
+[[manager.prepend_keymap]]
+on   = [ "<C-c>" ]
+desc = "Disable close"
+run  = "noop"
+
+[[manager.prepend_keymap]]
+on   = [ "<C-w>" ]
+desc = "Close the current tab, or quit if it's last"
+run  = "close"
+
+# --- PLUGINS ---
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "c" ]
+desc = "Chmod on selected files"
+run  = "plugin chmod"
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "m" ]
+desc = "Mount"
+run  = "plugin mount"
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "o" ]
+run  = "plugin open-with-cmd block"
+# run  = "plugin open-with-cmd --args=block"
+desc = "Open with command in the terminal"
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "O" ]
+run  = "plugin open-with-cmd"
+desc = "Open with command"
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "t" ]
+desc = "Trash"
+run  = "plugin trash"
+
+# --- EXTERNAL ---
+
 [[manager.prepend_keymap]]
 on   = [ "\\", "d" ]
 desc = "Drag selected items"
-run = '''
+run  = '''
 	shell 'dragon -x -T "$@"' --confirm
 '''
 
 [[manager.prepend_keymap]]
 on   = [ "\\", "e" ]
 desc = "Open in editor"
-run = '''
+run  = '''
 	shell '$EDITOR "$@"' --block --confirm
 '''
 
 [[manager.prepend_keymap]]
+on   = [ "\\", "g" ]
+desc = "Spawn LazyGit here"
+run  = "shell lazygit --block --confirm"
+
+[[manager.prepend_keymap]]
 on   = [ "\\", "i" ]
 desc = "Preview in pager"
-run = '''
+run  = '''
   shell "bat --paging=always $@" --block --confirm
 '''
 
 [[manager.prepend_keymap]]
 on   = [ "\\", "s" ]
 desc = "Spawn shell here"
-run = '''
+run  = '''
   shell "$SHELL" --block --confirm
 '''
 
 [[manager.prepend_keymap]]
-on  = [ "\\", "z" ]
+on   = [ "\\", "x" ]
+desc = "Extract archive"
+run  = '''
+  shell 'ya pub extract --list "$@"' --confirm
+'''
+# plugin extract --args="$@"
+
+[[manager.prepend_keymap]]
+on   = [ "\\", "z" ]
 desc = "Unpack archive"
-run = '''
+run  = '''
 	shell '7z x -o"$0.dir" "$1"' --block --confirm
 '''
