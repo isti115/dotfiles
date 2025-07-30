@@ -1,0 +1,6 @@
+customCommands:
+  containers:
+    - name: Inspect in `jless`
+      attach: true
+      command: 'sh -c "docker inspect {{ .Container.ID }} | jless"'
+      serviceNames: []
