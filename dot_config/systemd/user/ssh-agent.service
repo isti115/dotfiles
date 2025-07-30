@@ -1,0 +1,16 @@
+# Based on:
+# https://gitlab.archlinux.org/archlinux/packaging/packages/openssh/-/issues/10
+
+[Unit]
+ConditionEnvironment=!SSH_AGENT_PID
+Description=OpenSSH key agent
+Documentation=man:ssh-agent(1) man:ssh-add(1) man:ssh(1)
+Requires=ssh-agent.socket
+
+[Service]
+ExecStart=/run/current-system/sw/bin/ssh-agent -D
+SuccessExitStatus=2
+Type=simple
+
+[Install]
+Also=ssh-agent.socket

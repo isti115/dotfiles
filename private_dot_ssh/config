@@ -1,1 +1,2 @@
+IdentityAgent ${XDG_RUNTIME_DIR}/ssh-agent.socket
 AddKeysToAgent yes
