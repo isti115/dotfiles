@@ -52,3 +52,5 @@ def nix-env-list [] {
 export extern "nix-env -e" [
   package: string@"nix-env-list"
 ]
+
+alias nux-shell = nix-shell --run 'env SHELL=nu nu'
